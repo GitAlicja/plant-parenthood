@@ -9,11 +9,11 @@ const Reminder = require('../models/reminder-model');
 
 // GET route => to get all plants in your collection
 
-// find all plants, filter by the owner
 router.get('/my-plants', (req, res, next) => {
+  // find all plants, filter by the owner
   Plant.find({ owner: req.session.userID })
-    .then(allThePlants => {
-      res.json(allThePlants);
+    .then(collectedPlants => {
+      res.json(collectedPlants);
     })
     .catch(err => {
       console.error(err);
@@ -23,7 +23,7 @@ router.get('/my-plants', (req, res, next) => {
 
 
 // POST route => to create / add a plant to your collection
-// custom fields and slug from the Trefle API accessed and sent to data base by the frontend
+// custom fields values and slug from the Trefle API accessed and sent to data base by frontend
 
 router.post('/my-plants', (req, res, next) => {
 
@@ -57,8 +57,8 @@ router.post('/my-plants', (req, res, next) => {
 
 // GET route => to get a details page (plant which is in your collection)
 
-// get the plant, filter by the owner and id
 router.get('/my-plants/:id', (req, res, next) => {
+  // get the plant, filter by the owner and id
   Plant.findOne({ _id: req.params.id, owner: req.session.userID })
     .populate('reminders')
     .then(onePlant => {
@@ -74,7 +74,6 @@ router.get('/my-plants/:id', (req, res, next) => {
           console.log(trefleResponse.data);
 
           res.json({ ourModel: onePlant, apiInfo: trefleResponse.data });
-          //res.json({ apiInfo: resp.data });
         });
     })
     .catch(err => {
@@ -82,7 +81,6 @@ router.get('/my-plants/:id', (req, res, next) => {
       res.sentStatus(500);
     });
 });
-
 
 
 // 1st version => using slug from Trefle
@@ -143,7 +141,14 @@ router.delete('/my-plants/:id', (req, res, next) => {
         res.sendStatus(404);
         return;
       }
-      res.json({ message: `Plant with ${req.params.id} is removed successfully.` });
+      
+      // after removing a plant remove also all reminders created for this plant
+      return Promise.all(onePlant.reminders.map(reminderID => Reminder.findByIdAndRemove(reminderID).exec()))
+        .then(() => res.json({ message: `Plant with ${req.params.id} is removed successfully.` }))
+        .catch(err => {
+          console.error(err);
+          res.sentStatus(500);
+        });
     })
     .catch(err => {
       console.error(err);

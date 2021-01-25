@@ -6,7 +6,7 @@ const Reminder = require('../models/reminder-model');
 const Plant = require('../models/plant-model');
 
 
-// GET route => to retrieve list of reminders
+// GET route => to retrieve list of all reminders
 
 router.get('/reminders', (req, res, next) => {
   Reminder.find({ owner: req.session.userID })
@@ -25,12 +25,18 @@ router.get('/reminders', (req, res, next) => {
 
 router.post('/reminders', (req, res, next) => {
 
-  // TODO test reminderDate (input validation)
   Plant.findOne({ _id: req.body.plantID, owner: req.session.userID })
     .then(onePlant => {
 
       if (!onePlant) {
         res.status(400).json({ error: 'Plant not found!' })
+        return;
+      }
+
+      // detecting invalid date format
+      let date = new Date(req.body.reminderDate);
+      if (!date || isNan(date.getTime())) {
+        res.status(400).json({ error: 'Wrong date format!' });
         return;
       }
 
@@ -43,7 +49,8 @@ router.post('/reminders', (req, res, next) => {
         owner: req.session.userID
       })
         .then(response => {
-          Plant.findByIdAndUpdate(req.body.plantID, { $push: { reminders: response._id } })
+          onePlant.reminders.push(response._id);
+          onePlant.save()
             .then(theResponse => {
               res.json(theResponse);
             })
@@ -88,13 +95,20 @@ router.get('/reminders/:id', (req, res, next) => {
 
 router.put('/reminders/:id', (req, res, next) => {
 
-  // TODO test reminderDate (input validation)
   if (!req.body.reminderDate || !Array.isArray(req.body.typeOfCare) || req.body.typeOfCare < 1) {
     res.status(400).json({ error: 'Choose date and type of care!' });
     return;
   }
 
-  Reminder.findOneAndUpdate({ _id: req.params.id, owner: req.session.userID }, { reminderDate: req.body.reminderDate, typeOfCare: req.body.typeOfCare, frequency: req.body.frequency, unit: req.body.unit})
+  // detecting invalid date format
+  let date = new Date(req.body.reminderDate);
+  if (!date || isNan(date.getTime())) {
+    res.status(400).json({ error: 'Wrong date format!' });
+    return;
+  }
+
+
+  Reminder.findOneAndUpdate({ _id: req.params.id, owner: req.session.userID }, { reminderDate: req.body.reminderDate, typeOfCare: req.body.typeOfCare, frequency: req.body.frequency, unit: req.body.unit })
     .then(oneReminder => {
 
       // if there is no reminder with certain id show 404 error
@@ -123,7 +137,14 @@ router.delete('/reminders/:id', (req, res, next) => {
         res.sendStatus(404);
         return;
       }
-      res.json({ message: `Reminder with ${req.params.id} is removed successfully.` });
+
+      // after removing a reminder update plant reminders array
+      Plant.findOneAndUpdate({ _id: req.body.plantID, owner: req.session.userID }, { $pull: { reminders: oneReminder._id })
+        .then(() => res.json({ message: `Reminder with ${req.params.id} is removed successfully.` }))
+        .catch(err => {
+          console.error(err);
+          res.sentStatus(500);
+        });
     })
     .catch(err => {
       console.error(err);
