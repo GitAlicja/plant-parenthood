@@ -2,42 +2,53 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const axios = require("axios");
-
+const user = require("../models/user-model");
 const Plant = require("../models/plant-model");
 
-router.get("/my-plants", (req, res, next) => {
-  Plant.find()
-    .populate("reminders")
-    .then((allThePlants) => {
-      res.json(allThePlants);
-    });
-});
+// /api/search/ GET
+
 router.get("/search", (req, res, next) => {
   const searchTerm = req.query.searchterm;
   // if (!req.session.userId) {
   //   res.redirect("/");
   // } else {
-  let query = {
-    $or: [
-      { name: new RegExp(req.query.query, "i") },
-      { instructions: new RegExp(req.query.query, "i") },
-    ],
-  };
 
   //API Search example - https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut
 
-  Plant.find(query).then(() => {
-    axios
-      .get(
-        "https://trefle.io/api/v1/plants/search?token=" +
-          process.env.TREFLE_ACCESS_TOKEN +
-          `&q=${searchTerm}`
-      )
-      .then((resp) => {
-        // information from trefle
-        console.log(resp.data);
-        res.json({ apiInfo: resp.data });
-      });
+  const apiURL =
+    "https://trefle.io/api/v1/plants/search?token=" +
+    process.env.TREFLE_ACCESS_TOKEN +
+    `&q=${searchTerm}`;
+
+  axios.get(apiURL).then((resp) => {
+    console.log(resp.data);
+    res.json({ apiInfo: resp.data });
   });
 });
+
+//get the detail of specific slug from the API
+
+router.get("/search/:slug", (req, res, next) => {
+  //get the plant from API
+  Plant.findOne({ trefleSlug: req.params.slug })
+    .then((onePlant) => {
+      axios
+        .get(
+          "https://trefle.io/api/v1/plants/" +
+            encodeURIComponent(req.params.slug) +
+            "?token=" +
+            process.env.TREFLE_ACCESS_TOKEN
+        )
+        .then((resp) => {
+          // information from trefle
+          console.log(resp.data);
+          res.json({ apiInfo: resp.data });
+        });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sentStatus(500);
+    });
+});
+
 module.exports = router;
