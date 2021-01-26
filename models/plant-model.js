@@ -1,31 +1,30 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
   name: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   plantImg: String,
   notes: {
     type: String,
-    trim: true
+    trim: true,
   },
-  reminders: [{ type: Schema.Types.ObjectId, ref: 'Reminder' }],
-  owner: { 
-    type: Schema.Types.ObjectId, 
-    ref: 'User',
-    required: true
+  reminders: [{ type: Schema.Types.ObjectId, ref: "Reminder" }],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
   trefleSlug: {
     type: String,
     required: true,
-    trim: true
-  }
+    trim: true,
+  },
 });
 
-
-const Plant = mongoose.model('Plant', plantSchema);
+const Plant = mongoose.model("Plant", plantSchema);
 
 module.exports = Plant;
