@@ -79,6 +79,7 @@ app.use("/api", authRoutes);
 const searchRoutes = require("./routes/search-routes");
 app.use("/api", searchRoutes);
 
-// app.use("/api", require("./routes/plant-routes"));
+app.use("/api", require("./routes/plant-routes"));
+app.use("/api", require("./routes/reminder-routes"));
 
 module.exports = app;

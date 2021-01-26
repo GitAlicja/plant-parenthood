@@ -7,9 +7,9 @@ const Plant = require("../models/plant-model");
 
 // /api/search/ GET
 
-router.get("/search", (req, res, next) => {
-  const searchTerm = req.query.searchterm;
-  // if (!req.session.userId) {
+router.get("/search/:searchterms", (req, res, next) => {
+  const searchTerm = req.params.searchterms;
+  console.log("SERACHTERM", searchTerm);
   //   res.redirect("/");
   // } else {
 
@@ -28,7 +28,8 @@ router.get("/search", (req, res, next) => {
 
 //get the detail of specific slug from the API
 
-router.get("/search/:slug", (req, res, next) => {
+router.get("/search/detail/:slug", (req, res, next) => {
+  console.log("search slug");
   //get the plant from API
   Plant.findOne({ trefleSlug: req.params.slug })
     .then((onePlant) => {

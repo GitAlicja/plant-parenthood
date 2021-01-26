@@ -20,7 +20,7 @@ const userSchema = new Schema(
       required: true
     },
     // bookmarkedPlants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
-    collectedPlants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
+    // collectedPlants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
     profileImg: String,
   },
   {
