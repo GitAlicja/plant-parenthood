@@ -12,6 +12,11 @@ router.get('/user-profile', (req, res, next) => {
   // TODO req.session.userID compare with auth (login)
   User.findById(req.session.userId)
     .then(user => {
+      // if there is no user with certain id show 404 error
+      if (!user) {
+        res.sendStatus(404);
+        return;
+      }
       res.json(user);
     })
     .catch(err => {
@@ -22,22 +27,27 @@ router.get('/user-profile', (req, res, next) => {
 
 // PUT route => to update user profile
 
-router.put('/user-profile/edit', (req, res, next) => {
+router.put('/user-profile', (req, res, next) => {
 
-  if (!req.body.name || req.body.name.trim().length === 0) {
-    res.status(400).json({ error: 'Plant name missing!' });
+  if (!req.body.username || req.body.username.trim().length === 0) {
+    res.status(400).json({ error: 'Username is missing!' });
     return;
   }
 
-  User.findByIdAndUpdate()
-    .then(onePlant => {
+  if (!req.body.email || req.body.email.trim().length === 0) {
+    res.status(400).json({ error: 'Email address is missing!' });
+    return;
+  }
 
-      // if there is no plant with certain id show 404 error
-      if (!onePlant) {
+  User.findByIdAndUpdate(req.session.userId, { username: req.body.username, email: req.body.email })
+    .then(user => {
+
+      // if there is no user with certain id show 404 error
+      if (!user) {
         res.sendStatus(404);
         return;
       }
-      res.json({ message: `Plant with ${req.params.id} is updated successfully.` });
+      res.json({ message: `User with ${req.params.id} is updated successfully.` });
     })
     .catch(err => {
       console.error(err);
@@ -46,5 +56,9 @@ router.put('/user-profile/edit', (req, res, next) => {
 })
 
 
+// TODO password verification
+
+// router.put('/user-profile/set-password', (req, res, next) => {});
 
 module.exports = router;
+
