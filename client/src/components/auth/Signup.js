@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import { signup } from "../../api";
+import { signup } from "../../api";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 class Signup extends Component {
   state = {
@@ -16,23 +16,23 @@ class Signup extends Component {
     const password = this.state.password;
     const email = this.state.email;
 
-    axios.post("/api/signup", { username, password, email }).then((resp) => {
-      this.setState({ username: "", password: "", email: "" });
-      this.props.updateTheUser(resp.data);
-    });
-  };
+    //   axios.post("/api/signup", { username, password, email }).then((resp) => {
+    //     this.setState({ username: "", password: "", email: "" });
+    //     this.props.updateTheUser(resp.data);
+    //   });
+    // };
 
-  //   signup(username, password, email)
-  //     .then((response) => {
-  //       this.setState({
-  //         username: "",
-  //         password: "",
-  //         email: "",
-  //       });
-  //       this.props.updateUser(response);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+    signup(username, password, email)
+      .then((response) => {
+        this.setState({
+          username: "",
+          password: "",
+          email: "",
+        });
+        this.props.updateUser(response);
+      })
+      .catch((error) => console.log(error));
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -66,6 +66,7 @@ class Signup extends Component {
             onChange={(e) => this.handleChange(e)}
           />
 
+          {/* Should go to user-profile edit page */}
           <input type="submit" value="Signup" />
         </form>
 
