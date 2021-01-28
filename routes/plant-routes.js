@@ -11,7 +11,7 @@ const Reminder = require('../models/reminder-model');
 
 router.get('/my-plants', (req, res, next) => {
   // find all plants, filter by the owner
-  Plant.find({ owner: req.session.userID })
+  Plant.find({ owner: req.user._id })
     .then(collectedPlants => {
       res.json(collectedPlants);
     })
@@ -41,8 +41,7 @@ router.post('/my-plants', (req, res, next) => {
     plantImg: req.body.plantImg,
     notes: req.body.notes,
     reminders: [],
-    // TODO req.session.userID compare with auth (login)
-    owner: req.session.userID,
+    owner: req.user._id,
     trefleSlug: req.body.slug
   })
     .then(response => {
@@ -59,7 +58,7 @@ router.post('/my-plants', (req, res, next) => {
 
 router.get('/my-plants/:id', (req, res, next) => {
   // get the plant, filter by the owner and id
-  Plant.findOne({ _id: req.params.id, owner: req.session.userID })
+  Plant.findOne({ _id: req.params.id, owner: req.user._id })
     .populate('reminders')
     .then(onePlant => {
 
@@ -112,7 +111,8 @@ router.put('/my-plants/:id', (req, res, next) => {
 
   // only the plant owner can update the plant (filter by the owner and id)
   // only values for the name, plantImg and notes properties can be updated
-  Plant.findOneAndUpdate({ _id: req.params.id, owner: req.session.userID }, { name: req.body.name, plantImg: req.body.plantImg, notes: req.body.notes })
+  // put method takes two arguments: what to look for (find an object with certain id), what to update (send)
+  Plant.findOneAndUpdate({ _id: req.params.id, owner: req.user._id }, { name: req.body.name, plantImg: req.body.plantImg, notes: req.body.notes })
     .then(onePlant => {
 
       // if there is no plant with certain id show 404 error
@@ -133,7 +133,7 @@ router.put('/my-plants/:id', (req, res, next) => {
 
 router.delete('/my-plants/:id', (req, res, next) => {
 
-  Plant.findOneAndRemove({ _id: req.params.id, owner: req.session.userID })
+  Plant.findOneAndRemove({ _id: req.params.id, owner: req.user._id })
     .then(onePlant => {
 
       // if there is no plant with certain id show 404 error

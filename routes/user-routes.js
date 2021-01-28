@@ -9,8 +9,7 @@ const User = require('../models/user-model');
 
 router.get('/user-profile', (req, res, next) => {
 
-  // TODO req.session.userID compare with auth (login)
-  User.findById(req.session.userId)
+  User.findById(req.user._id)
     .then(user => {
       // if there is no user with certain id show 404 error
       if (!user) {
@@ -39,7 +38,7 @@ router.put('/user-profile', (req, res, next) => {
     return;
   }
 
-  User.findByIdAndUpdate(req.session.userId, { username: req.body.username, email: req.body.email })
+  User.findByIdAndUpdate(req.user._id, { username: req.body.username, email: req.body.email })
     .then(user => {
 
       // if there is no user with certain id show 404 error

@@ -8,7 +8,7 @@ const Plant = require("../models/plant-model");
 // GET route => to retrieve list of all reminders
 
 router.get("/reminders", (req, res, next) => {
-  Reminder.find({ owner: req.session.userID })
+  Reminder.find({ owner: req.user._id })
     .populate("plant")
     .then((allTheReminders) => {
       res.json(allTheReminders);
@@ -22,7 +22,7 @@ router.get("/reminders", (req, res, next) => {
 // POST route => to create a new reminder
 
 router.post("/reminders", (req, res, next) => {
-  Plant.findOne({ _id: req.body.plantID, owner: req.session.userID })
+  Plant.findOne({ _id: req.body.plantID, owner: req.user._id })
     .then((onePlant) => {
       if (!onePlant) {
         res.status(400).json({ error: "Plant not found!" });
@@ -42,7 +42,7 @@ router.post("/reminders", (req, res, next) => {
         frequency: req.body.frequency,
         unit: req.body.unit,
         plant: req.body.plantID,
-        owner: req.session.userID,
+        owner: req.user._id,
       })
         .then((response) => {
           onePlant.reminders.push(response._id);
@@ -70,7 +70,7 @@ router.post("/reminders", (req, res, next) => {
 // GET route => to retrieve a specific reminder
 
 router.get("/reminders/:id", (req, res, next) => {
-  Reminder.findOne({ _id: req.params.id, owner: req.session.userID })
+  Reminder.findOne({ _id: req.params.id, owner: req.user._id })
     .populate("plant")
     .then((oneReminder) => {
       if (!oneReminder) {
@@ -105,7 +105,7 @@ router.put("/reminders/:id", (req, res, next) => {
   }
 
   Reminder.findOneAndUpdate(
-    { _id: req.params.id, owner: req.session.userID },
+    { _id: req.params.id, owner: req.user._id },
     {
       reminderDate: req.body.reminderDate,
       typeOfCare: req.body.typeOfCare,
@@ -132,7 +132,7 @@ router.put("/reminders/:id", (req, res, next) => {
 // DELETE route => to delete a specific reminder
 
 router.delete("/reminders/:id", (req, res, next) => {
-  Reminder.findOneAndRemove({ _id: req.params.id, owner: req.session.userID })
+  Reminder.findOneAndRemove({ _id: req.params.id, owner: req.user._id })
     .then((oneReminder) => {
       // if there is no reminder with certain id show 404 error
       if (!oneReminder) {
@@ -142,7 +142,7 @@ router.delete("/reminders/:id", (req, res, next) => {
 
       // after removing a reminder update plant reminders array
       Plant.findOneAndUpdate(
-        { _id: req.body.plantID, owner: req.session.userID },
+        { _id: req.body.plantID, owner: req.user._id },
         { $pull: { reminders: oneReminder._id } }
       )
         .then(() =>
