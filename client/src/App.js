@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import Navbar from "./components/Navbar";
+import PlantDetails from "./components/plants/PlantDetails";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class App extends React.Component {
           userInSession={this.state.loggedInUser}
           updateUser={this.updateTheUser}
         />
+        <PlantDetails />
+
         <Switch>
           {/* <Route exact path="/signup" component={Signup} /> */}
           <Route
