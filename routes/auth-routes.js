@@ -1,9 +1,7 @@
 const express = require("express");
 const authRoutes = express.Router();
-
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-
 const User = require("../models/user-model");
 
 authRoutes.post("/signup", (req, res, next) => {
