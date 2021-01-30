@@ -43,7 +43,7 @@ router.get("/search/detail/:slug", (req, res, next) => {
         .then((resp) => {
           // information from trefle
           console.log(resp.data);
-          res.json({ apiInfo: resp.data });
+          res.json(resp.data);
         });
     })
     .catch((err) => {

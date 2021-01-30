@@ -5,6 +5,7 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import Navbar from "./components/Navbar";
 import PlantDetails from "./components/plants/PlantDetails";
+import TrefleSearchDetails from "./components/trefle-search/TrefleSearchDetails";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class App extends React.Component {
           userInSession={this.state.loggedInUser}
           updateUser={this.updateTheUser}
         />
-        <PlantDetails />
+        <Route path="/search/detail/:id/:slug" component={PlantDetails} />
 
         <Switch>
           {/* <Route exact path="/signup" component={Signup} /> */}
@@ -39,6 +40,8 @@ class App extends React.Component {
             path="/"
             render={() => <Login updateUser={this.updateTheUser} />}
           />
+
+          <Route path="/search/detail/:slug" component={TrefleSearchDetails} />
         </Switch>
       </div>
     );

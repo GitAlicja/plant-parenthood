@@ -29,12 +29,7 @@ const app_name = require("./package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
-
 const app = express();
-// USE passport.initialize() and passport.session() HERE:
-app.use(passport.initialize());
-app.use(passport.session());
-
 // ADD SESSION SETTINGS HERE:
 const MongoStore = require("connect-mongo")(session);
 app.use(
@@ -46,6 +41,10 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
+
+// USE passport.initialize() and passport.session() HERE:
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middleware Setup
 app.use(logger("dev"));
