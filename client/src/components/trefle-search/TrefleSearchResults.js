@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import "../../App.css";
+
 
 class TrefleSearchResults extends React.Component {
 
@@ -9,7 +11,8 @@ class TrefleSearchResults extends React.Component {
     results: [],
     loading: true,
     searchTerm: "",
-    timeoutID: 0
+    timeoutID: 0,
+    numOfResults: ""
   };
 
   componentDidMount() {
@@ -21,16 +24,18 @@ class TrefleSearchResults extends React.Component {
       this.setState({
         results: [],
         loading: false,
+        numOfResults: ""
       });
       return;
     }
 
     axios
-      .get("/api/search", {params: { searchterm: this.state.searchTerm } } )
+      .get("/api/search", { params: { searchterm: this.state.searchTerm } })
       .then(resp => {
         this.setState({
           results: resp.data.data,
-          loading: false
+          loading: false,
+          numOfResults: resp.data.meta.total
         });
       });
   };
@@ -61,11 +66,15 @@ class TrefleSearchResults extends React.Component {
 
         {this.state.results.map((plant, key) => {
           return (
-            <Link to={'/search/detail/' + plant.slug} key={plant.id}>
-              <h3>{plant.common_name}</h3>
-            </Link>
+            <div className="list-result" key={plant.id}>
+              <Link to={'/search/detail/' + plant.slug} >
+                {plant.common_name ? (<h3>{plant.common_name}</h3>) : (<h3>Scientific name</h3>)}
+                <p>{plant.scientific_name}</p>
+              </Link>
+              </div>
           );
         })}
+        <p>{ this.state.numOfResults }</p>
       </div>
     );
   }

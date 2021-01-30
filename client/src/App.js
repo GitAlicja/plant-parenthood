@@ -27,8 +27,8 @@ class App extends React.Component {
           {/* <Route exact path="/signup" component={Signup} /> */}
           <Route exact path="/signup" render={() => <Signup updateUser={this.updateTheUser} />} />
           <Route exact path="/" render={() => <Login updateUser={this.updateTheUser} />} />
-          <Route path="/search" component={TrefleSearchResults}/>
-          <Route path="/add-plant/:slug" component={AddPlant}/>
+          <Route exact path="/search" component={TrefleSearchResults}/>
+          <Route exact path="/add-plant/:slug" component={AddPlant}/>
         </Switch>
       </div>
     );
