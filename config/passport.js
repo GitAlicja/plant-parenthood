@@ -3,42 +3,23 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs"); // !!!
 const passport = require("passport");
 
-passport.serializeUser((loggedInUser, cb) => {
-  cb(null, loggedInUser._id);
+passport.serializeUser((loggedInUser, done) => done(null, loggedInUser._id));
+
+passport.deserializeUser((userId, done) => {
+  User.findById(userId, (err, user) => done(err, user));
 });
 
-passport.deserializeUser((userIdFromSession, cb) => {
-  User.findById(userIdFromSession, (err, userDocument) => {
+passport.use(new LocalStrategy((username, password, done) => {
+  User.findOne({ username }, (err, user) => {
     if (err) {
-      cb(err);
-      return;
+      return done(err);
     }
-    cb(null, userDocument);
+
+    // Return always same error on user not found or invalid password. This prevents account guessing.
+    if (!user || !bcrypt.compareSync(password, user.passwordHash)) {
+      return done(null, false, { message: "Incorrect username or password." });
+    }
+
+    done(null, user);
   });
-});
-
-passport.use(
-  new LocalStrategy((username, password, next) => {
-    User.findOne({ username }, (err, foundUser) => {
-      if (err) {
-        next(err);
-        return;
-      }
-
-      if (!foundUser) {
-        next(null, false, { message: "Incorrect username." });
-        return;
-      }
-
-      console.log("username", username);
-      console.log("foundUser", foundUser);
-
-      if (!bcrypt.compareSync(password, foundUser.passwordHash)) {
-        next(null, false, { message: "Incorrect password." });
-        return;
-      }
-
-      next(null, foundUser);
-    });
-  })
-);
+}));

@@ -5,10 +5,11 @@ const axios = require("axios");
 const user = require("../models/user-model");
 const Plant = require("../models/plant-model");
 
-// /api/search/ GET
+// /api/search?searchterm= GET
 
-router.get("/search/:searchterms", (req, res, next) => {
-  const searchTerm = req.params.searchterms;
+router.get("/search", (req, res, next) => {
+
+  const searchTerm = req.query.searchterm;
   console.log("SERACHTERM", searchTerm);
   //   res.redirect("/");
   // } else {
@@ -22,7 +23,7 @@ router.get("/search/:searchterms", (req, res, next) => {
 
   axios.get(apiURL).then((resp) => {
     console.log(resp.data);
-    res.json({ apiInfo: resp.data });
+    res.json(resp.data);
   });
 });
 
@@ -36,9 +37,9 @@ router.get("/search/detail/:slug", (req, res, next) => {
       axios
         .get(
           "https://trefle.io/api/v1/plants/" +
-            encodeURIComponent(req.params.slug) +
-            "?token=" +
-            process.env.TREFLE_ACCESS_TOKEN
+          encodeURIComponent(req.params.slug) +
+          "?token=" +
+          process.env.TREFLE_ACCESS_TOKEN
         )
         .then((resp) => {
           // information from trefle
