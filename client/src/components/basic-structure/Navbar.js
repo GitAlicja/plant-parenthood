@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../api"; // changed to logout api from empty Logout.js component file
 
-
 const logoutUser = (props) => {
   logout().then(() => {
     props.updateUser(null); // sets the global user object to 'null'

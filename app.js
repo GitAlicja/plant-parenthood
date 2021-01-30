@@ -29,18 +29,19 @@ const app_name = require("./package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
-
 const app = express();
 
 // ADD SESSION SETTINGS HERE: This must be done BEFORE passport.session() call. Otherwise login will not work.
 const MongoStore = require("connect-mongo")(session);
-app.use(session({
-  secret: "doesn't matter in our case", // but it's required
-  resave: false,
-  saveUninitialized: false, // don't create cookie for non-logged-in user
-  // MongoStore makes sure the user stays logged in also when the server restarts
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-}));
+app.use(
+  session({
+    secret: "doesn't matter in our case", // but it's required
+    resave: false,
+    saveUninitialized: false, // don't create cookie for non-logged-in user
+    // MongoStore makes sure the user stays logged in also when the server restarts
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
 
 // USE passport.initialize() and passport.session() HERE:
 app.use(passport.initialize());
