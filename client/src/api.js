@@ -12,12 +12,8 @@ export const login = (username, password) => {
     .then((response) => response.data);
 };
 
-export const logout = () => {
-  return axios.post("/api/logout", {}).then((response) => response.data);
-};
+// export const logout = () => {
+//   return axios.post("/api/logout", {}).then((response) => response.data);
+// };
 
-export const treflePlantDetails = () => {
-  return axios
-    .post("/api/search/detail/:slug", {})
-    .then((response) => response.data);
-};
+export const logout = () => axios.post("/api/logout");

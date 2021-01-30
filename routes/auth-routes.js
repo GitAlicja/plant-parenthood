@@ -65,9 +65,11 @@ authRoutes.post("/signup", (req, res, next) => {
     });
   });
 });
+
 authRoutes.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
     if (err) {
+      console.error(err);
       res
         .status(500)
         .json({ message: "Something went wrong authenticating user" });
@@ -89,7 +91,8 @@ authRoutes.post("/login", (req, res, next) => {
       }
 
       // We are now logged in (that's why we can also send req.user)
-      res.status(200).json(theUser);
+      // never ever return password hash via api!
+      res.json({ id: theUser._id, username: theUser.username, email: theUser.email });
     });
   })(req, res, next);
 });
@@ -99,15 +102,17 @@ authRoutes.post("/login", (req, res, next) => {
 // (b) the details of the logged-in user (if any)
 authRoutes.get("/checkuser", (req, res, next) => {
   if (req.user) {
-    res.json({ userDoc: req.user });
+    // never ever return password hash via api!
+    res.json({ id: req.user._id, username: req.user.username, email: req.user.email });
   } else {
-    res.json({ userDoc: null });
+    // unauthorized http code
+    res.sendStatus(401);
   }
 });
 
 authRoutes.post("/logout", (req, res, next) => {
   // req.logout() is defined by passport
   req.logout();
-  res.status(200).json({ message: "Log out success!" });
+  res.sendStatus(204);
 });
 module.exports = authRoutes;
