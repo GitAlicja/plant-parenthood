@@ -1,4 +1,3 @@
-//form to add plant from API search, add custom fields
 import React from "react";
 import axios from "axios";
 
@@ -31,17 +30,10 @@ class AddPlant extends React.Component {
       <div>
         <h2>Add a new plant</h2>
         <form>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={this.handleChangeInput}
-            className="form-control input-field"
-          ></input>
+          <input type="text" name="name" placeholder="Plant name" value={this.state.name} onChange={this.handleChangeInput} className="form-control input-field"></input>
           <textarea
             name="notes"
-            placeholder="Description"
+            placeholder="Your notes"
             value={this.state.notes}
             onChange={this.handleChangeInput}
             className="form-control input-field"
