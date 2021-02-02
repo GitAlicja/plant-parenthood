@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
+import EditReminder from "./EditReminder";
+
 export class SingleReminder extends React.Component {
 
   state = {
     reminder: null,
-    loading: true
+    loading: true,
+    displayEditForm: false
   };
 
   componentDidMount() {
@@ -38,12 +41,16 @@ export class SingleReminder extends React.Component {
         {this.state.reminder && (
           <div>
             <h2>{this.state.reminder.plant.name}</h2>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
+            <p>{new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC"  })}</p>
+            <p>{new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric", timeZone: "UTC"  })}</p>
             <p>{this.state.reminder.typeOfCare}</p>
             <p>{this.state.reminder.frequency} {this.state.reminder.unit}</p>
           </div>
         )}
+        {/* {...props} => so we can have 'this.props.history' in EditReminder.js */}
+        {/* normally 'this.props.history' is provided by the Router (from App.js), here we have to pass it ourselves to the subcomponent */}
+        { this.state.reminder && (<EditReminder theReminder={this.state.reminder} {...this.props} />) }
+        
       </div>
     );
   }

@@ -16,7 +16,8 @@ class ListOfReminders extends React.Component {
       .get('/api/reminders')
       .then(resp => {
         this.setState({
-          reminders: resp.data.sort((a,b) => a.reminderDate < b.reminderDate ? -1 : 1),
+          // sort reminders by date
+          reminders: resp.data.sort((a, b) => a.reminderDate < b.reminderDate ? -1 : 1),
           loading: false
         });
       });
@@ -32,14 +33,15 @@ class ListOfReminders extends React.Component {
           <span className="sr-only">Loading...</span>
         </div>)}
 
-        { this.state.reminders.length === 0 ? (<p>No reminders yet!</p>) : this.state.reminders.map((reminder, key) => {
+        { !this.state.loading && this.state.reminders.length === 0 ? (<p>No reminders yet!</p>) : this.state.reminders.map((reminder, key) => {
           return (
             <div className="list-result" key={reminder._id}>
               <Link to={'/reminders/' + reminder._id}>
                 <h3>{reminder.plant.name}</h3>
-                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
                 <p>{reminder.typeOfCare}</p>
+                {/* date and time output format */}
+                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC"  })}</p>
+                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric", timeZone: "UTC" })}</p>
               </Link>
             </div>
           );

@@ -110,7 +110,7 @@ router.get("/reminders/:id", (req, res, next) => {
 router.put("/reminders/:id", (req, res, next) => {
   if (
     !req.body.reminderDate ||
-    !Array.isArray(req.body.typeOfCare) ||
+    !req.body.typeOfCare ||
     req.body.typeOfCare < 1
   ) {
     res.status(400).json({ error: "Choose date and type of care!" });
