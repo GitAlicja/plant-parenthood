@@ -40,7 +40,7 @@ class ListOfReminders extends React.Component {
                 <h3>{reminder.plant.name}</h3>
                 <p>{reminder.typeOfCare}</p>
                 {/* date and time output format */}
-                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC"  })}</p>
+                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</p>
                 <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric", timeZone: "UTC" })}</p>
               </Link>
             </div>

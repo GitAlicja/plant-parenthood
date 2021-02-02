@@ -32,10 +32,10 @@ class EditReminder extends React.Component {
     const reminderId = this.props.theReminder._id;
 
     // send standardized ISO string via REST API
-    const reminderDate = new Date(this.state.reminderDate).toISOString()
+    const reminderDate = new Date(this.state.reminderDate + "Z").toISOString()
 
     axios.put("/api/reminders/" + reminderId, { ...this.state, reminderDate }).then((resp) => {
-      this.props.history.push("/reminders");
+      this.props.reloadHandler();
       // console.log(resp);
     });
   };
