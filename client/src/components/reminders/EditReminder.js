@@ -20,8 +20,20 @@ class EditReminder extends React.Component {
 
   handleChangeInput = (event) => {
     console.log(event)
+    let value = event.currentTarget.value;
+    // convert string to integer
+    // frequency validation in the backend: validating type number
+    // frequency sent in body as string
+    if (event.currentTarget.name === 'frequency') {
+      value = parseInt(event.currentTarget.value);
+    }
+    // console.log(event, value)
+    // this.setState({
+    //   [event.target.name]: event.currentTarget.value,
+    // });
+
     this.setState({
-      [event.target.name]: event.currentTarget.value,
+      [event.target.name]: value,
     });
   };
 
@@ -34,6 +46,7 @@ class EditReminder extends React.Component {
     // send standardized ISO string via REST API
     const reminderDate = new Date(this.state.reminderDate + "Z").toISOString()
 
+    // needs to match the backend route (reminder-routes)
     axios.put("/api/reminders/" + reminderId, { ...this.state, reminderDate }).then((resp) => {
       this.props.reloadHandler();
       // console.log(resp);

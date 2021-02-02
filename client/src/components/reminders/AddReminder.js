@@ -14,13 +14,26 @@ class AddReminder extends React.Component {
 
   dateToLocalString(date) {
     const isoString = date.toISOString();
-    return isoString.substr(0, isoString.lastIndexOf(":") );
+    return isoString.substr(0, isoString.lastIndexOf(":"));
   }
 
   handleChangeInput = (event) => {
     console.log(event)
+    
+    let value = event.currentTarget.value;
+    // convert string to integer
+    // frequency validation in the backend: validating type number
+    // frequency sent in body as string
+    if (event.currentTarget.name === 'frequency') {
+      value = parseInt(event.currentTarget.value);
+    }
+    // console.log(event, value)
+    // this.setState({
+    //   [event.target.name]: event.currentTarget.value,
+    // });
+
     this.setState({
-      [event.target.name]: event.currentTarget.value,
+      [event.target.name]: value,
     });
   };
 
@@ -32,8 +45,8 @@ class AddReminder extends React.Component {
     const plantID = this.props.match.params.plantID;
 
     // send standardized ISO string via REST API
-    const reminderDate =  new Date(this.state.reminderDate).toISOString()
-    axios.post("/api/reminders", { ...this.state, reminderDate,  plantID }).then((resp) => {
+    const reminderDate = new Date(this.state.reminderDate).toISOString()
+    axios.post("/api/reminders", { ...this.state, reminderDate, plantID }).then((resp) => {
       this.props.history.push("/reminders");
       // console.log(resp);
     });
