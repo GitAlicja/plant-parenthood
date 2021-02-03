@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 import EditReminder from "./EditReminder";
 
@@ -49,14 +50,17 @@ export class SingleReminder extends React.Component {
         {this.state.reminder && (
           <div>
             <h2>{this.state.reminder.plant.name}</h2>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</p>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric", timeZone: "UTC" })}</p>
+            <p>{new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+            <p>{new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
             <p>{this.state.reminder.typeOfCare}</p>
-            <p>{this.state.reminder.frequency} {this.state.reminder.unit}</p>
+            <p>Every {this.state.reminder.frequency} {this.state.reminder.unit}</p>
           </div>
         )}
 
         {this.state.reminder && this.state.displayEditForm ? (<EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />) : (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Reminder</button>)}
+        <br />
+        <br />
+        <Link to="/reminders">All Reminders</Link>
       </div>
     );
   }

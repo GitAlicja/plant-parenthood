@@ -4,29 +4,32 @@ import axios from "axios";
 class AddReminder extends React.Component {
 
   state = {
-    // new Date() without any parameters preselects initial value for the local date and local time
-    // dateToLocalString() function creates a string out of the date object and cuts seconds off
-    reminderDate: this.dateToLocalString(new Date()),
-    typeOfCare: "Water", // preselected value
-    frequency: 1, // preselected value
-    unit: "day", // preselected value
+    // new Date() without any parameters creates a new date object (local timezone)
+    // dateToLocaleString() function creates a string (local timezone) without seconds
+    reminderDate: this.dateToLocaleString(new Date()),
+    typeOfCare: "Water", // preselected initial value
+    frequency: 1, // preselected initial value (type: number)
+    unit: "day", // preselected initial value
   };
 
-  dateToLocalString(date) {
-    const isoString = date.toISOString();
-    return isoString.substr(0, isoString.lastIndexOf(":"));
+  dateToLocaleString(date) {
+    const padding = v => v < 10 ? "0"+ v : v;
+    // expected HTML date and local time format 2021-02-03T17:16
+    return date.getFullYear() + "-" + padding(date.getMonth() + 1) + "-" + padding(date.getDate()) 
+    + "T" + padding(date.getHours()) + ":" + padding(date.getMinutes());
   }
 
   handleChangeInput = (event) => {
     console.log(event)
-    
+
     let value = event.currentTarget.value;
     // convert string to integer
-    // frequency validation in the backend: validating type number
+    // frequency validation in the backend: validating number (data type)
     // frequency sent in body as string
     if (event.currentTarget.name === 'frequency') {
       value = parseInt(event.currentTarget.value);
     }
+
     // console.log(event, value)
     // this.setState({
     //   [event.target.name]: event.currentTarget.value,
@@ -45,7 +48,7 @@ class AddReminder extends React.Component {
     const plantID = this.props.match.params.plantID;
 
     // send standardized ISO string via REST API
-    const reminderDate = new Date(this.state.reminderDate).toISOString()
+    const reminderDate = new Date(this.state.reminderDate).toJSON();
     axios.post("/api/reminders", { ...this.state, reminderDate, plantID }).then((resp) => {
       this.props.history.push("/reminders");
       // console.log(resp);

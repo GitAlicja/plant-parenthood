@@ -7,19 +7,22 @@ class EditReminder extends React.Component {
     super(props);
     this.state = {
       // this.props.theReminder.reminderDate is a string from the data bank
-      reminderDate: this.dateToLocalString(this.props.theReminder.reminderDate),
+      reminderDate: this.dateToLocaleString(new Date(this.props.theReminder.reminderDate)),
       typeOfCare: this.props.theReminder.typeOfCare,
       frequency: this.props.theReminder.frequency,
       unit: this.props.theReminder.unit
     }
   }
 
-  dateToLocalString(isoString) {
-    return isoString.substr(0, isoString.lastIndexOf(":"));
+  dateToLocaleString(date) {
+    const padding = v => v < 10 ? "0"+ v : v;
+    // expected HTML date and local time format 2021-02-03T17:16
+    return date.getFullYear() + "-" + padding(date.getMonth() + 1) + "-" + padding(date.getDate()) 
+    + "T" + padding(date.getHours()) + ":" + padding(date.getMinutes());
   }
 
   handleChangeInput = (event) => {
-    console.log(event)
+    console.log(event);
     let value = event.currentTarget.value;
     // convert string to integer
     // frequency validation in the backend: validating type number
@@ -44,7 +47,7 @@ class EditReminder extends React.Component {
     const reminderId = this.props.theReminder._id;
 
     // send standardized ISO string via REST API
-    const reminderDate = new Date(this.state.reminderDate + "Z").toISOString()
+    const reminderDate = new Date(this.state.reminderDate).toJSON();
 
     // needs to match the backend route (reminder-routes)
     axios.put("/api/reminders/" + reminderId, { ...this.state, reminderDate }).then((resp) => {

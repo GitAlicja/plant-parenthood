@@ -4,24 +4,13 @@ import { Link } from "react-router-dom";
 
 import "../../App.css";
 
-class ListOfReminders extends React.Component {
+class PlantListOfReminders extends React.Component {
 
-  state = {
-    reminders: [],
-    loading: true,
-  };
+  // this.props.reminders (reminders list of plant model)
 
-  componentDidMount() {
-    axios
-      .get('/api/reminders')
-      .then(resp => {
-        this.setState({
-          // sort reminders by date
-          reminders: resp.data.sort((a, b) => a.reminderDate < b.reminderDate ? -1 : 1),
-          loading: false
-        });
-      });
-  }
+  // TODO in the PlantDetails:
+  // <PlantListOfReminders reminders={this.state.customPlant.reminders}>
+  // style: could be an acordeon
 
   render() {
     return (
@@ -37,11 +26,11 @@ class ListOfReminders extends React.Component {
           return (
             <div className="list-result" key={reminder._id}>
               <Link to={'/reminders/' + reminder._id}>
-                <h3>{reminder.plant.name}</h3>
+                {/* <h3>{reminder.plant.name}</h3> */}
                 <p>{reminder.typeOfCare}</p>
                 {/* date and time output format */}
-                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
+                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</p>
+                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric", timeZone: "UTC" })}</p>
               </Link>
             </div>
           );
@@ -51,4 +40,4 @@ class ListOfReminders extends React.Component {
   }
 }
 
-export default ListOfReminders;
+export default PlantListOfReminders;
