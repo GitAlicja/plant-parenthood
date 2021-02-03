@@ -1,43 +1,34 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import "../../App.css";
 
-class PlantListOfReminders extends React.Component {
+const PlantListOfReminders = (props) => {
+  // list of plant reminders (saved in reminders array)
+  // props.plantReminders
 
-  // this.props.reminders (reminders list of plant model)
-
-  // TODO in the PlantDetails:
-  // <PlantListOfReminders reminders={this.state.customPlant.reminders}>
-  // style: could be an acordeon
-
-  render() {
     return (
       <div>
-        {/* <Navbar /> */}
-        <h2>List of Reminders</h2>
-        {/* Bootstrap spinner */}
-        {this.state.loading && (<div className="spinner-border text-light" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>)}
-
-        { !this.state.loading && this.state.reminders.length === 0 ? (<p>No reminders yet!</p>) : this.state.reminders.map((reminder, key) => {
+        <h4>Reminders</h4>
+        { !props.plantReminders.length === 0 ? (<p>No reminders yet!</p>) : props.plantReminders.map((reminder, key) => {
           return (
             <div className="list-result" key={reminder._id}>
               <Link to={'/reminders/' + reminder._id}>
-                {/* <h3>{reminder.plant.name}</h3> */}
                 <p>{reminder.typeOfCare}</p>
                 {/* date and time output format */}
-                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</p>
-                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric", timeZone: "UTC" })}</p>
+                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
               </Link>
             </div>
           );
         })}
       </div>
     );
-  }
 }
 
 export default PlantListOfReminders;
+
+
+// TODO in the PlantDetails component:
+// <PlantListOfReminders plantReminders={this.state.[..... customPlant? ].reminders} />
+// style: this could be a collapsible section

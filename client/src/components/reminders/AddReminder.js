@@ -15,12 +15,13 @@ class AddReminder extends React.Component {
   dateToLocaleString(date) {
     const padding = v => v < 10 ? "0"+ v : v;
     // expected HTML date and local time format 2021-02-03T17:16
+    // getMonth() method returns the month in the specified date according to local time, where 0 = January
     return date.getFullYear() + "-" + padding(date.getMonth() + 1) + "-" + padding(date.getDate()) 
     + "T" + padding(date.getHours()) + ":" + padding(date.getMinutes());
-  }
+  };
 
   handleChangeInput = (event) => {
-    console.log(event)
+    console.log(event);
 
     let value = event.currentTarget.value;
     // convert string to integer
@@ -28,7 +29,7 @@ class AddReminder extends React.Component {
     // frequency sent in body as string
     if (event.currentTarget.name === 'frequency') {
       value = parseInt(event.currentTarget.value);
-    }
+    };
 
     // console.log(event, value)
     // this.setState({
