@@ -7,7 +7,7 @@ const reminderSchema = new Schema({
     required: true
   },
   typeOfCare: {
-    type: [String],
+    type: String,
     required: true
   },
   plant: {

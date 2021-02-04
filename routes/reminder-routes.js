@@ -5,6 +5,11 @@ const router = express.Router();
 const Reminder = require("../models/reminder-model");
 const Plant = require("../models/plant-model");
 
+
+const typesOfCare = ["Water", "Fertilize", "Repot", "Insecticide", "Trim"];
+const frequencies = [1, 2, 3, 4, 5, 6, 7];
+const units = ["day", "week", "month", "year"];
+
 // GET route => to retrieve list of all reminders
 
 router.get("/reminders", (req, res, next) => {
@@ -15,7 +20,7 @@ router.get("/reminders", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -30,14 +35,29 @@ router.post("/reminders", (req, res, next) => {
       }
 
       // detecting invalid date format
-      let date = new Date(req.body.reminderDate);
-      if (!date || isNan(date.getTime())) {
+      const date = new Date(req.body.reminderDate);
+      if (!date || Number.isNaN(date.getTime())) {
         res.status(400).json({ error: "Wrong date format!" });
         return;
       }
 
+      if (!typesOfCare.includes(req.body.typeOfCare)) {
+        res.status(400).json({ error: "Invalid type of care!" });
+        return;
+      }
+
+      if (!frequencies.includes(req.body.frequency)) {
+        res.status(400).json({ error: "Invalid frequency!" });
+        return;
+      }
+
+      if (!units.includes(req.body.unit)) {
+        res.status(400).json({ error: "Invalid unit!" });
+        return;
+      }
+
       Reminder.create({
-        reminderDate: req.body.reminderDate,
+        reminderDate: date,
         typeOfCare: req.body.typeOfCare,
         frequency: req.body.frequency,
         unit: req.body.unit,
@@ -53,17 +73,17 @@ router.post("/reminders", (req, res, next) => {
             })
             .catch((err) => {
               console.error(err);
-              res.sentStatus(500);
+              res.sendStatus(500);
             });
         })
         .catch((err) => {
           console.error(err);
-          res.sentStatus(500);
+          res.sendStatus(500);
         });
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -81,7 +101,7 @@ router.get("/reminders/:id", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -90,7 +110,7 @@ router.get("/reminders/:id", (req, res, next) => {
 router.put("/reminders/:id", (req, res, next) => {
   if (
     !req.body.reminderDate ||
-    !Array.isArray(req.body.typeOfCare) ||
+    !req.body.typeOfCare ||
     req.body.typeOfCare < 1
   ) {
     res.status(400).json({ error: "Choose date and type of care!" });
@@ -98,16 +118,31 @@ router.put("/reminders/:id", (req, res, next) => {
   }
 
   // detecting invalid date format
-  let date = new Date(req.body.reminderDate);
-  if (!date || isNan(date.getTime())) {
+  const date = new Date(req.body.reminderDate);
+  if (!date || Number.isNaN(date.getTime())) {
     res.status(400).json({ error: "Wrong date format!" });
+    return;
+  }
+
+  if (!typesOfCare.includes(req.body.typeOfCare)) {
+    res.status(400).json({ error: "Invalid type of care!" });
+    return;
+  }
+
+  if (!frequencies.includes(req.body.frequency)) {
+    res.status(400).json({ error: "Invalid frequency!" });
+    return;
+  }
+
+  if (!units.includes(req.body.unit)) {
+    res.status(400).json({ error: "Invalid unit!" });
     return;
   }
 
   Reminder.findOneAndUpdate(
     { _id: req.params.id, owner: req.user._id },
     {
-      reminderDate: req.body.reminderDate,
+      reminderDate: date,
       typeOfCare: req.body.typeOfCare,
       frequency: req.body.frequency,
       unit: req.body.unit,
@@ -125,7 +160,7 @@ router.put("/reminders/:id", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -152,12 +187,12 @@ router.delete("/reminders/:id", (req, res, next) => {
         )
         .catch((err) => {
           console.error(err);
-          res.sentStatus(500);
+          res.sendStatus(500);
         });
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
