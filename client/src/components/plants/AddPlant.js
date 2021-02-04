@@ -29,6 +29,7 @@ class AddPlant extends React.Component {
     return (
       <div>
         <h2>Add a new plant</h2>
+        {/* <form enctype="multipart/form-data"> */}
         <form>
           <input type="text" name="name" placeholder="Plant name" value={this.state.name} onChange={this.handleChangeInput} className="form-control input-field"></input>
           <textarea
@@ -38,7 +39,9 @@ class AddPlant extends React.Component {
             onChange={this.handleChangeInput}
             className="form-control input-field"
           ></textarea>
-          {/* <input type="file" name="plantImg"></input> */}
+          <label>Upload an image
+          <input type="file" name="plantImg"></input>  
+          </label>
           <button onClick={this.submitHandler} className="btn btn-primary">
             Save Plant
           </button>
