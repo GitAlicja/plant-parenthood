@@ -5,7 +5,7 @@ class AddPlant extends React.Component {
   state = {
     name: "",
     plantImg: "",
-    notes: "",
+    notes: ""
   };
 
   handleChangeInput = (event) => {
@@ -25,6 +25,19 @@ class AddPlant extends React.Component {
     });
   };
 
+  uploadHandler = (event) => {
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append("imageUrl", event.target.files[0]);
+
+    axios.post("/api/upload", uploadData).then((resp) => {
+      this.setState({
+        plantImg: resp.data.secure_url
+      })
+    })
+  }
+
   render() {
     return (
       <div>
@@ -40,7 +53,7 @@ class AddPlant extends React.Component {
             className="form-control input-field"
           ></textarea>
           <label>Upload an image
-          <input type="file" name="plantImg"></input>  
+          <input type="file" name="plantImg" onChange={this.uploadHandler}></input>  
           </label>
           <button onClick={this.submitHandler} className="btn btn-primary">
             Save Plant
