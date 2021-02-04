@@ -48,7 +48,7 @@ router.get("/search/detail/:slug", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 

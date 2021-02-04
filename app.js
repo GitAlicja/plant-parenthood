@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
@@ -30,6 +29,7 @@ const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
 const app = express();
+
 
 // ADD SESSION SETTINGS HERE: This must be done BEFORE passport.session() call. Otherwise login will not work.
 const MongoStore = require("connect-mongo")(session);
@@ -78,5 +78,6 @@ app.use("/api", require("./routes/trefle-search-routes"));
 app.use("/api", require("./routes/plant-routes"));
 app.use("/api", require("./routes/reminder-routes"));
 app.use("/api", require("./routes/user-routes"));
+app.use('/api', require('./routes/file-upload-routes'));
 
 module.exports = app;

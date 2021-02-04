@@ -16,7 +16,7 @@ router.get("/my-plants", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -46,7 +46,7 @@ router.post("/my-plants", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -78,7 +78,7 @@ router.get("/my-plants/:id/:slug", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -125,7 +125,7 @@ router.put("/my-plants/:id", (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -153,12 +153,12 @@ router.delete("/my-plants/:id", (req, res, next) => {
         )
         .catch((err) => {
           console.error(err);
-          res.sentStatus(500);
+          res.sendStatus(500);
         });
     })
     .catch((err) => {
       console.error(err);
-      res.sentStatus(500);
+      res.sendStatus(500);
     });
 });
 
