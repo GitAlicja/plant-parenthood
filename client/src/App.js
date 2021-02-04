@@ -25,10 +25,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route path="/my-plants/detail/:id/:slug" component={PlantDetails} />
         <Navbar
           userInSession={this.state.loggedInUser}
           updateUser={this.updateTheUser}
+        />
+        <Route
+          exact
+          path="/my-plants/detail/:id/:slug"
+          component={PlantDetails}
         />
         <Switch>
           {/* <Route exact path="/signup" component={Signup} /> */}
@@ -42,6 +46,7 @@ class App extends React.Component {
             path="/"
             render={() => <Login updateUser={this.updateTheUser} />}
           />
+
           <Route exact path="/search" component={TrefleSearchResults} />
           <Route path="/search/detail/:slug" component={TrefleSearchDetails} />
           <Route exact path="/add-plant/:slug" component={AddPlant} />

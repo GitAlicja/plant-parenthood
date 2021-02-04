@@ -8,7 +8,6 @@ const Plant = require("../models/plant-model");
 // /api/search?searchterm= GET
 
 router.get("/search", (req, res, next) => {
-
   const searchTerm = req.query.searchterm;
   console.log("SERACHTERM", searchTerm);
   //   res.redirect("/");
@@ -30,16 +29,16 @@ router.get("/search", (req, res, next) => {
 //get the detail of specific slug from the API
 
 router.get("/search/detail/:slug", (req, res, next) => {
-  console.log("search slug");
+  // console.log("search slug");
   //get the plant from API
   Plant.findOne({ trefleSlug: req.params.slug })
     .then((onePlant) => {
       axios
         .get(
           "https://trefle.io/api/v1/plants/" +
-          encodeURIComponent(req.params.slug) +
-          "?token=" +
-          process.env.TREFLE_ACCESS_TOKEN
+            encodeURIComponent(req.params.slug) +
+            "?token=" +
+            process.env.TREFLE_ACCESS_TOKEN
         )
         .then((resp) => {
           // information from trefle
