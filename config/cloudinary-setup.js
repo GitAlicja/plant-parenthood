@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'plants-gallery', // The name of the folder in cloudinary
-  }
+  },
   allowedFormats: ['jpg', 'png'],
   // params: { resource_type: 'raw' }, => this is in case you want to upload other type of files, not just images
   filename: function (req, res, cb) {
