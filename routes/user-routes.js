@@ -16,7 +16,7 @@ router.get('/user-profile', (req, res, next) => {
         res.sendStatus(404);
         return;
       }
-      res.json(user);
+      res.json({ id: user._id, username: user.username, email: user.email, profileImg: user.profileImg });
     })
     .catch(err => {
       console.error(err);
@@ -38,7 +38,7 @@ router.put('/user-profile', (req, res, next) => {
     return;
   }
 
-  User.findByIdAndUpdate(req.user._id, { username: req.body.username, email: req.body.email })
+  User.findByIdAndUpdate(req.user._id, { username: req.body.username, email: req.body.email, profileImg: req.body.profileImg })
     .then(user => {
 
       // if there is no user with certain id show 404 error
@@ -46,7 +46,7 @@ router.put('/user-profile', (req, res, next) => {
         res.sendStatus(404);
         return;
       }
-      res.json({ message: `User with ${req.params.id} is updated successfully.` });
+      res.json({ message: `User with ID ${req.user._id} is updated successfully.` });
     })
     .catch(err => {
       console.error(err);

@@ -16,6 +16,8 @@ import ListOfReminders from "./components/reminders/ListOfReminders";
 import AddReminder from "./components/reminders/AddReminder";
 import SingleReminder from "./components/reminders/SingleReminder";
 
+import UserProfile from "./components/user-profile/UserProfile";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -59,6 +61,7 @@ class App extends React.Component {
           <Route exact path="/reminders" component={ListOfReminders} />
           <Route exact path="/add-reminder/:plantID" component={AddReminder} />
           <Route exact path="/reminders/:id" component={SingleReminder} />
+          <Route exact path="/user-profile" component={UserProfile} />
         </Switch>
       </div>
     );

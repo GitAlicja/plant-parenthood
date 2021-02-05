@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import EditReminder from "./EditReminder";
 
-export class SingleReminder extends React.Component {
+class SingleReminder extends React.Component {
 
   state = {
     reminder: null,
@@ -38,11 +38,11 @@ export class SingleReminder extends React.Component {
     const reminderId = this.props.match.params.id;
     axios.delete("/api/reminders/" + reminderId)
       .then(() => {
-        this.props.history.push('/reminders');      
+        this.props.history.push('/reminders');
       });
   }
 
-  
+
   // first render action happens with value null for the beer property (initial state value)
   // you will need if else statement or setTimeout inside setState (inside promise)
   render() {
@@ -66,7 +66,12 @@ export class SingleReminder extends React.Component {
           </div>
         )}
 
-        {this.state.reminder && this.state.displayEditForm ? (<EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />) : (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Reminder</button>)}
+        {this.state.reminder && this.state.displayEditForm ?
+          (<div>
+            <button onClick={() => this.setState({ displayEditForm: false })}>Close</button>
+            <EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />
+          </div>) :
+          (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Reminder</button>)}
         <br /><br />
         <button onClick={() => this.deleteReminder()}>Delete reminder</button>
         <br /><br />
