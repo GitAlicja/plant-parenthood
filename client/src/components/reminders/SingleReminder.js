@@ -34,6 +34,15 @@ export class SingleReminder extends React.Component {
     this.componentDidMount(); // reload data
   };
 
+  deleteReminder = () => {
+    const reminderId = this.props.match.params.id;
+    axios.delete("/api/reminders/" + reminderId)
+      .then(() => {
+        this.props.history.push('/reminders');      
+      });
+  }
+
+  
   // first render action happens with value null for the beer property (initial state value)
   // you will need if else statement or setTimeout inside setState (inside promise)
   render() {
@@ -58,9 +67,10 @@ export class SingleReminder extends React.Component {
         )}
 
         {this.state.reminder && this.state.displayEditForm ? (<EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />) : (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Reminder</button>)}
-        <br />
-        <br />
-        <Link to="/reminders">All Reminders</Link>
+        <br /><br />
+        <button onClick={() => this.deleteReminder()}>Delete reminder</button>
+        <br /><br />
+        <Link to="/reminders">Back to Reminders</Link>
       </div>
     );
   }
