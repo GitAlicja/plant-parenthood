@@ -59,7 +59,7 @@ class PlantCollection extends React.Component {
         {this.state.plants.map((plant, key) => {
           return (
             <div className="list-result" key={plant._id}>
-              <Link to={'/my-plants/' + plant._id + "/" + plant.trefleSlug}>
+              <Link to={'/my-plants/detail/' + plant._id + "/" + plant.trefleSlug}>
                 <div>
                   <img src={plant.plantImg} alt='small plant' />
                 </div>

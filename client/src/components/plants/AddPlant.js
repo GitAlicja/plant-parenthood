@@ -27,8 +27,6 @@ class AddPlant extends React.Component {
 
   uploadHandler = (event) => {
     const uploadData = new FormData();
-    // imageUrl => this name has to be the same as in the model since we pass
-    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
     uploadData.append("imageUrl", event.target.files[0]);
 
     axios.post("/api/upload", uploadData).then((resp) => {
@@ -42,7 +40,6 @@ class AddPlant extends React.Component {
     return (
       <div>
         <h2>Add a new plant</h2>
-        {/* <form enctype="multipart/form-data"> */}
         <form>
           <input type="text" name="name" placeholder="Plant name" value={this.state.name} onChange={this.handleChangeInput} className="form-control input-field"></input>
           <textarea
