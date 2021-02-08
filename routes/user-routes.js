@@ -38,7 +38,15 @@ router.put('/user-profile', (req, res, next) => {
     return;
   }
 
-  User.findByIdAndUpdate(req.user._id, { username: req.body.username, email: req.body.email, profileImg: req.body.profileImg })
+  const updateObj = { username: req.body.username, email: req.body.email };
+
+  // we update the image only if it's added to edit form
+  // if no image was added, no image will be sent to the data bank
+  if (req.body.profileImg) {
+    updateObj.profileImg = req.body.profileImg;
+  }
+
+  User.findByIdAndUpdate(req.user._id, updateObj)
     .then(user => {
 
       // if there is no user with certain id show 404 error
