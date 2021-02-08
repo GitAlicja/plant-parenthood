@@ -56,7 +56,6 @@ class TrefleSearchResults extends React.Component {
     console.log(this.state.results)
     return (
       <div>
-        {/* <Navbar /> */}
         {/* Bootstrap spinner */}
         {/* {this.state.loading && (<div className="spinner-border text-light" role="status">
                   <span className="sr-only">Loading...</span>

@@ -35,7 +35,6 @@ class UserProfile extends React.Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         {/* Bootstrap spinner */}
         {this.state.loading && (<div className="spinner-border text-light" role="status">
           <span className="sr-only">Loading...</span>

@@ -26,7 +26,6 @@ class ListOfReminders extends React.Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         <h2>List of Reminders</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (<div className="spinner-border text-light" role="status">
