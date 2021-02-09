@@ -8,3 +8,5 @@ npm-debug.log
 .env
 
 client/.eslintcache
+
+.DS_Store

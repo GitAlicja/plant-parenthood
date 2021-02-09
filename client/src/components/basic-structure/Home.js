@@ -1,28 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Navbar from "./Navbar";
-// import Footer from "./Footer";
+import "../../App.css";
 
 const Home = () => {
 
   return (
     <div>
-      {/* <Navbar /> */}
       <div>
         <div>
-          <Link to="/search"></Link>
-          <h2>Search Plants</h2>
+          <Link to="/search">
+            <img src="/images/loupe.png" alt="small loupe" className="home-icons" />
+            <h3>Search Plants</h3>
+          </Link>
         </div>
         <div>
-          <Link to="/my-plants"></Link>
-          <h2>Your Collection</h2>
+          <Link to="/my-plants">
+            <img src="/images/plant.png" alt="small plant" className="home-icons" />
+            <h3>Your Collection</h3>
+          </Link>
         </div>
         <div>
-          <Link to="/reminders"></Link>
-          <h2>Check Reminders</h2>
+          <Link to="/reminders">
+            <img src="/images/calendar.png" alt="small calendar" className="home-icons" />
+            <h3>All Reminders</h3>
+          </Link>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   )
 }

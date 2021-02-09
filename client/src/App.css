@@ -42,3 +42,11 @@
   border: solid 1px lightgrey;
   margin: 10px 50px;
 }
+
+.user-prifile-image {
+  height: 100px;
+}
+
+.home-icons {
+  height: 200px;
+}

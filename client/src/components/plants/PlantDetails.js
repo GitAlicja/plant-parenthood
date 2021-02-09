@@ -2,10 +2,12 @@
 //custom fields from user (component)
 //api plant details (component) (hides if other component is open vice versa)
 import React, { Component } from "react";
+import axios from "axios";
+
 import PlantApiDetails from "./PlantApiDetails";
 import PlantCustomFields from "./PlantCustomFields";
-import axios from "axios";
 import EditPlantDetails from "./EditPlantDetails";
+import PlantListOfReminders from "../reminders/PlantListOfReminders";
 
 export default class PlantDetails extends Component {
   state = {
@@ -15,6 +17,7 @@ export default class PlantDetails extends Component {
     userPlant: null,
     loading: true,
     displayEditForm: false,
+    displayReminders: false,
   };
 
   // happens after first render
@@ -53,6 +56,13 @@ export default class PlantDetails extends Component {
       apiComponent: !this.state.apiComponent,
     });
   };
+
+  hideRemindersHandler = () => {
+    this.setState({
+      displayEditForm: false,
+    });
+  };
+
   render() {
     if (this.state.loading) {
       return <p> Loading ... </p>;
@@ -67,10 +77,10 @@ export default class PlantDetails extends Component {
             reloadHandler={this.reloadHandler}
           />
         ) : (
-          <button onClick={() => this.setState({ displayEditForm: true })}>
-            Edit Your Plant
-          </button>
-        )}
+            <button onClick={() => this.setState({ displayEditForm: true })}>
+              Edit Your Plant
+            </button>
+          )}
 
         <button onClick={this.showOrHide}>display other tab</button>
 
@@ -80,6 +90,15 @@ export default class PlantDetails extends Component {
         {this.state.apiComponent && (
           <PlantApiDetails dataFromApi={this.state.apiPlant} />
         )}
+
+        <div>
+          {this.state.userPlant && this.state.displayReminders ?
+            (<div>
+              <button onClick={() => this.setState({ displayReminders: false })} >Hide Reminders</button>
+              <PlantListOfReminders plantReminders={this.state.userPlant.reminders} hideReminders={this.hideRemindersHandler} />
+            </div>) :
+            (<button onClick={() => this.setState({ displayReminders: true })} >Show Reminders</button>)}
+        </div>
       </div>
     );
   }

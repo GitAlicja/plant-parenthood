@@ -12,7 +12,7 @@ class EditReminder extends React.Component {
       frequency: this.props.theReminder.frequency,
       unit: this.props.theReminder.unit
     }
-  }
+  };
 
   dateToLocaleString(date) {
     const padding = v => v < 10 ? "0"+ v : v;
@@ -60,7 +60,7 @@ class EditReminder extends React.Component {
   render() {
     return (
       <div>
-        <h4>Edit reminder</h4>
+        <h3>Edit Reminder</h3>
         <form>
           <label>
             Date:

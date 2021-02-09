@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import EditReminder from "./EditReminder";
 
-export class SingleReminder extends React.Component {
+class SingleReminder extends React.Component {
 
   state = {
     reminder: null,
@@ -34,12 +34,20 @@ export class SingleReminder extends React.Component {
     this.componentDidMount(); // reload data
   };
 
+  deleteReminder = () => {
+    const reminderId = this.props.match.params.id;
+    axios.delete("/api/reminders/" + reminderId)
+      .then(() => {
+        this.props.history.push('/reminders');
+      });
+  }
+
+
   // first render action happens with value null for the beer property (initial state value)
   // you will need if else statement or setTimeout inside setState (inside promise)
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         {/* Bootstrap spinner */}
         {this.state.loading && (<div className="spinner-border text-light" role="status">
           <span className="sr-only">Loading...</span>
@@ -49,18 +57,26 @@ export class SingleReminder extends React.Component {
         {/* if data is not there you would try to show for example this.state.reminder.null instead of this.state.reminder.reminderDate and example this.state.reminder.null will always cause errors */}
         {this.state.reminder && (
           <div>
+            <img src={this.state.reminder.plant.plantImg} alt="plant" />
             <h2>{this.state.reminder.plant.name}</h2>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
+            <p>Remind me to...</p>
             <p>{this.state.reminder.typeOfCare}</p>
+            <p>on {new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+            <p>at {new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
             <p>Every {this.state.reminder.frequency} {this.state.reminder.unit}</p>
           </div>
         )}
 
-        {this.state.reminder && this.state.displayEditForm ? (<EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />) : (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Reminder</button>)}
-        <br />
-        <br />
-        <Link to="/reminders">All Reminders</Link>
+        {this.state.reminder && this.state.displayEditForm ?
+          (<div>
+            <button onClick={() => this.setState({ displayEditForm: false })}>Close</button>
+            <EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />
+          </div>) :
+          (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Reminder</button>)}
+        <br /><br />
+        <button onClick={() => this.deleteReminder()}>Delete reminder</button>
+        <br /><br />
+        <Link to="/reminders">Back to Reminders</Link>
       </div>
     );
   }

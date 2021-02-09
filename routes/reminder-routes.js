@@ -177,7 +177,7 @@ router.delete("/reminders/:id", (req, res, next) => {
 
       // after removing a reminder update plant reminders array
       Plant.findOneAndUpdate(
-        { _id: req.body.plantID, owner: req.user._id },
+        { _id:  oneReminder.plant, owner: req.user._id },
         { $pull: { reminders: oneReminder._id } }
       )
         .then(() =>
