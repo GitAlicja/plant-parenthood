@@ -32,6 +32,18 @@ export default class EditPlantDetails extends Component {
       })
       .catch((error) => console.log(error));
   };
+  uploadHandler = (event) => {
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append("imageUrl", event.target.files[0]);
+
+    axios.post("/api/upload", uploadData).then((resp) => {
+      this.setState({
+        plantImg: resp.data.secure_url,
+      });
+    });
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,12 +70,18 @@ export default class EditPlantDetails extends Component {
             onChange={(e) => this.handleChange(e)}
             className="form-control input-field"
           ></textarea>
-          {/* <input 
-          type="file" 
-          name="plantImg"
-          value={this.state.plantImg}
-          onChange={(e) => this.handleChange(e)}  >
-          </input> */}
+          <input
+            type="file"
+            name="plantImg"
+            // value={this.state.plantImg}
+            onChange={(e) => this.uploadHandler(e)}
+          ></input>
+          <img
+            src={this.state.plantImg || "/images/growing.png"}
+            width="180"
+            height="180"
+            alt="defaultPlantImg"
+          />
           <button onClick={this.submitHandler} className="btn btn-primary">
             Save
           </button>
