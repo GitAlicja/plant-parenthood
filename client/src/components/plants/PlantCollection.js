@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 
 class PlantCollection extends React.Component {
-
   state = {
     plants: [],
     loading: true,
@@ -14,14 +13,12 @@ class PlantCollection extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get('/api/my-plants')
-      .then(resp => {
-        this.setState({
-          plants: resp.data,
-          loading: false
-        });
+    axios.get("/api/my-plants").then((resp) => {
+      this.setState({
+        plants: resp.data,
+        loading: false,
       });
+    });
   }
 
   // editSearchTerm = (event) => {
@@ -49,9 +46,11 @@ class PlantCollection extends React.Component {
     return (
       <div>
         {/* Bootstrap spinner */}
-        {this.state.loading && (<div className="spinner-border text-light" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>)}
+        {this.state.loading && (
+          <div className="spinner-border text-light" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        )}
 
         {/* <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control input-field' placeholder='Search beers...'></input> */}
 
@@ -60,7 +59,7 @@ class PlantCollection extends React.Component {
             <div className="list-result" key={plant._id}>
               <Link to={'/my-plants/detail/' + plant._id + "/" + plant.trefleSlug}>
                 <div>
-                  <img src={plant.plantImg} alt='small plant' />
+                  <img src={plant.plantImg} alt="small plant" />
                 </div>
                 <div>
                   <h3>{plant.name}</h3>

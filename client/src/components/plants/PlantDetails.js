@@ -31,7 +31,7 @@ export default class PlantDetails extends Component {
     axios
       .get(`/api/my-plants/${params.id}/${params.slug}`)
       .then((responseFromApi) => {
-        console.log("RESPONSE", responseFromApi);
+        // console.log("RESPONSE", responseFromApi);
 
         this.setState({
           // apiPlant: { common_name: "Test" }, Use this to test if you don't have data
@@ -49,19 +49,6 @@ export default class PlantDetails extends Component {
     });
     this.componentDidMount(); // reload data
   };
-  // renderEditForm = () => {
-  //   if (!this.state.name) {
-  //     this.getSinglePlant();
-  //   } else {
-  //     return (
-  //       <EditPlantDetails
-  //         customPlantField={this.state}
-  //         getCustomPlantField={this.getCustomPlantField}
-  //         {...this.props}
-  //       />
-  //     );
-  //   }
-  // };
 
   showOrHide = () => {
     this.setState({
