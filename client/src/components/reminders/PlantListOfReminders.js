@@ -9,15 +9,15 @@ const PlantListOfReminders = (props) => {
 
   return (
     <div>
-      <h4>Reminders</h4>
+      <h4>Remind me to...</h4>
       { !props.plantReminders.length === 0 ? (<p>No reminders yet!</p>) : props.plantReminders.map((reminder, key) => {
         return (
           <div className="list-result" key={reminder._id}>
             <Link to={'/reminders/' + reminder._id}>
               <p>{reminder.typeOfCare}</p>
               {/* date and time output format */}
-              <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-              <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
+              <p>on {new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+              {/* <p>at {new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p> */}
             </Link>
           </div>
         );

@@ -57,10 +57,12 @@ class SingleReminder extends React.Component {
         {/* if data is not there you would try to show for example this.state.reminder.null instead of this.state.reminder.reminderDate and example this.state.reminder.null will always cause errors */}
         {this.state.reminder && (
           <div>
+            <img src={this.state.reminder.plant.plantImg} alt="plant" />
             <h2>{this.state.reminder.plant.name}</h2>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-            <p>{new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
+            <p>Remind me to...</p>
             <p>{this.state.reminder.typeOfCare}</p>
+            <p>on {new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+            <p>at {new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
             <p>Every {this.state.reminder.frequency} {this.state.reminder.unit}</p>
           </div>
         )}

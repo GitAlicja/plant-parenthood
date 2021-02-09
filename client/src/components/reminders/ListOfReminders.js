@@ -26,7 +26,7 @@ class ListOfReminders extends React.Component {
   render() {
     return (
       <div>
-        <h2>List of Reminders</h2>
+        <h2>All Reminders</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (<div className="spinner-border text-light" role="status">
           <span className="sr-only">Loading...</span>
@@ -39,8 +39,8 @@ class ListOfReminders extends React.Component {
                 <h3>{reminder.plant.name}</h3>
                 <p>{reminder.typeOfCare}</p>
                 {/* date and time output format */}
-                <p>{new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-                <p>{new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
+                <p>on {new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+                {/* <p>at {new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p> */}
               </Link>
             </div>
           );
