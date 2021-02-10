@@ -55,25 +55,41 @@ class TrefleSearchResults extends React.Component {
   render() {
     console.log(this.state.results)
     return (
-      <div>
+      <div className="list-main-container">
+        <h2>Find Your Plants</h2>
         {/* Bootstrap spinner */}
-        {/* {this.state.loading && (<div className="spinner-border text-light" role="status">
-                  <span className="sr-only">Loading...</span>
-              </div>)} */}
-
-        <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control input-field' placeholder='Search plant...'></input>
-
+        {this.state.loading && (<div className="spinner-border text-light" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>)}
+        <div>
+          <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control' placeholder='Search plant...'></input>
+        </div>
         {this.state.results.map((plant, key) => {
+
+          const headline = plant.common_name || plant.scientific_name;
+          const otherNames = [];
+          if (plant.common_name) {
+            otherNames.push(plant.scientific_name);
+            if (plant.synonyms.length > 0) {
+              otherNames.push(plant.synonyms[0]);
+            }
+          } else if (plant.synonyms.length > 0) {
+            otherNames.push(plant.synonyms[0]);
+            if (plant.synonyms.length > 1) {
+              otherNames.push(plant.synonyms[1]);
+            }
+          }
+
           return (
-            <div className="list-result" key={plant.id}>
+            <div className="list-item" key={plant.id}>
               <Link to={'/search/detail/' + plant.slug} >
-                {plant.common_name ? (<h3>{plant.common_name}</h3>) : (<h3>Scientific name</h3>)}
-                <p>{plant.scientific_name}</p>
+                <h3>{headline}</h3>
+                {otherNames.length > 0 && (<p>Other names: {otherNames.join(', ')}</p>)}
               </Link>
-              </div>
+            </div>
           );
         })}
-        <p>{ this.state.numOfResults }</p>
+        <p>{this.state.numOfResults}</p>
       </div>
     );
   }

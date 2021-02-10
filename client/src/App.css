@@ -1,28 +1,51 @@
-.App {
-  text-align: center;
+html {
+  margin: 0;
+  padding:0; 
 }
 
 body {
-  padding: 0;
   margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #3C403D;
   background-color: #daded4;
+}
+
+.App {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-
-.list-result {
-  border: solid 1px lightgrey;
-  margin: 10px 50px;
+.list-main-container {
+  flex-grow: 1;
+  width: 80%;
 }
 
-.user-prifile-image {
+.list-item {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.user-profile-image {
   height: 100px;
 }
 
 .home-icons {
   height: 200px;
+}
+
+.searchbar-icon {
+  height: 20px;
+}
+
+h1, h2 {
+  text-transform: uppercase;
 }

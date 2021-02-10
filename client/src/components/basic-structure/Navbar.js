@@ -35,11 +35,9 @@ const Navbar = (props) => {
     );
   } else {
     return (
-      <div>
-        <nav>
+      <nav>
         <h3>Welcome to Plant Parenthood!</h3>
-        </nav>
-      </div>
+      </nav>
     );
   }
 };
