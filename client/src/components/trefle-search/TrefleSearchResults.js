@@ -57,13 +57,14 @@ class TrefleSearchResults extends React.Component {
     return (
       <div className="list-main-container">
         <h2>Find Your Plants</h2>
+        <div>
+          <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control mb-4' placeholder='Search plant...'></input>
+        </div>
         {/* Bootstrap spinner */}
         {this.state.loading && (<div className="spinner-border text-light" role="status">
           <span className="sr-only">Loading...</span>
         </div>)}
-        <div>
-          <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control' placeholder='Search plant...'></input>
-        </div>
+
         {this.state.results.map((plant, key) => {
 
           const headline = plant.common_name || plant.scientific_name;
@@ -81,15 +82,20 @@ class TrefleSearchResults extends React.Component {
           }
 
           return (
-            <div className="list-item" key={plant.id}>
+            <div className="list-item shadow p-3 mb-4 bg-body rounded" key={plant.id}>
               <Link to={'/search/detail/' + plant.slug} >
-                <h3>{headline}</h3>
-                {otherNames.length > 0 && (<p>Other names: {otherNames.join(', ')}</p>)}
+                <div className="list-item-box">
+                  <div><img src={plant.image_url || "/images/growing.png"} className="list-item-img" /></div>
+                  <div>
+                    <h5 className="list-item-headline">{headline}</h5>
+                    {otherNames.length > 0 && (<p className="names-paragraph">{otherNames.join(', ')}</p>)}
+                  </div>
+                </div>
               </Link>
             </div>
           );
         })}
-        <p>{this.state.numOfResults}</p>
+        {this.state.numOfResults ? (<p>Total: {this.state.numOfResults}</p>) : ""}
       </div>
     );
   }
