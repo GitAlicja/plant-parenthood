@@ -84,12 +84,13 @@ class TrefleSearchResults extends React.Component {
           return (
             <div className="list-item shadow p-3 mb-4 bg-body rounded" key={plant.id}>
               <Link to={'/search/detail/' + plant.slug} >
-                <div className="list-item-box">
-                  <div><img src={plant.image_url || "/images/growing.png"} className="list-item-img" /></div>
-                  <div>
+                <div className="list-item-innerbox">
+                  <div className="list-item-img-container"><img src={plant.image_url || "/images/growing.png"} /></div>
+                  <div className="list-item-names">
                     <h5 className="list-item-headline">{headline}</h5>
-                    {otherNames.length > 0 && (<p className="names-paragraph">{otherNames.join(', ')}</p>)}
+                    {otherNames.length > 0 && (<p className="list-item-paragraph">{otherNames.join(', ')}</p>)}
                   </div>
+                  <div className="list-item-arrow">&#62;</div>
                 </div>
               </Link>
             </div>
