@@ -10,6 +10,7 @@ const logoutUser = (props) => {
 };
 
 const Navbar = (props) => {
+
   if (props.userInSession) {
     return (
       <div className="nav-container" >
@@ -34,7 +35,7 @@ const Navbar = (props) => {
           </div>
         </nav>
         <div>
-          <h4 className="mt-3" style={{color: "#39603D"}} >Hello, {props.userInSession.username} !</h4>
+          <h4 className="mt-3" style={{color: "#39603D"}}>Hello, {props.userInSession.username} !</h4>
         </div>
       </div>
     );

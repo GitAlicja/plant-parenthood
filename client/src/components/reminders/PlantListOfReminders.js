@@ -10,7 +10,10 @@ const PlantListOfReminders = (props) => {
   return (
     <div className="list-main-container">
       <h4>Remind me to...</h4>
-      { props.plantReminders.length === 0 ? (<p>No reminders yet!</p>) : props.plantReminders.map((reminder, key) => {
+      { props.plantReminders.length === 0 ? (<div>
+        <h5>No reminders yet!</h5>
+        <img src="/images/calendar.png" alt="reminder icon" className="transparent-icon mt-3 mb-4" />
+      </div>) : props.plantReminders.map((reminder, key) => {
 
         let typeOfCareIcon = "";
 

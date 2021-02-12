@@ -31,7 +31,10 @@ class ListOfReminders extends React.Component {
           <span className="sr-only">Loading...</span>
         </div>)}
 
-        { !this.state.loading && this.state.reminders.length === 0 ? (<p>No reminders yet!</p>) : this.state.reminders.map((reminder, key) => {
+        { !this.state.loading && this.state.reminders.length === 0 ? (<div>
+          <h4>No reminders yet!</h4>
+          <img src="/images/calendar.png" alt="calender icon" className="transparent-icon mt-3 mb-4" />
+        </div>) : this.state.reminders.map((reminder, key) => {
 
           let typeOfCareIcon = "";
 
@@ -51,7 +54,7 @@ class ListOfReminders extends React.Component {
             <div className="list-item shadow p-3 mb-4 bg-body rounded" key={reminder._id}>
               <Link to={'/reminders/' + reminder._id}>
                 <div className="list-item-innerbox">
-                  <div className="list-item-img-container"><img src={typeOfCareIcon} /></div>
+                  <div className="list-item-img-container"><img src={typeOfCareIcon} alt="reminder icon" /></div>
                   <div className="list-item-names">
                     <h5 className="list-item-headline">{reminder.plant.name}</h5>
                     <p className="list-item-paragraph">{reminder.typeOfCare}</p>

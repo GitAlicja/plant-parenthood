@@ -53,7 +53,10 @@ class PlantCollection extends React.Component {
         )}
         {/* <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control input-field' placeholder='Search beers...'></input> */}
 
-        {this.state.plants.map((plant, key) => {
+        { !this.state.loading && this.state.plants.length === 0 ? (<div>
+          <h4>No plants yet!</h4>
+          <img src="/images/plants.png" alt="plants collection icon" className="transparent-icon mt-3 mb-4" />
+        </div>) : this.state.plants.map((plant, key) => {
           return (
             <div className="list-item shadow p-3 mb-4 bg-body rounded" key={plant._id}>
               <Link to={'/my-plants/detail/' + plant._id + "/" + plant.trefleSlug}>

@@ -6,8 +6,7 @@ const Footer = () => {
   return (
     <footer className="mt-2" >
       <p>Created with <img src="/images/plant-heart.png" /> by Tamao and Alicja </p>
-      <p>Would you like to see more? To check the code visit our
-      <Link to='https://github.com/GitAlicja/plant-parenthood' alt='project-remote-repository' style={{ color: "#39603D" }}>GitHub repository</Link>
+      <p>Would you like to see more? To check the code visit our <Link to='https://github.com/GitAlicja/plant-parenthood' alt='project-remote-repository' className="green-link">GitHub repository</Link>
       </p>
     </footer>
   );

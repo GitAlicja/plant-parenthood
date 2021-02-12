@@ -1,6 +1,6 @@
 html {
   margin: 0;
-  padding:0; 
+  padding: 0;
 }
 
 body {
@@ -11,9 +11,14 @@ body {
   background-color: #daded4;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-transform: uppercase;
   margin: 30px auto;
+}
+
+h4 {
+  font-weight: 500;
 }
 
 .App {
@@ -54,7 +59,7 @@ h1, h2 {
   margin-right: 20px;
 }
 
-.list-item-img-container > img {
+.list-item-img-container>img {
   width: 60px;
   height: 60px;
   object-fit: cover;
@@ -65,7 +70,8 @@ h1, h2 {
   flex-grow: 1;
 }
 
-.list-item-headline {
+.list-item-headline,
+.reminder-header {
   color: #39603d;
 }
 
@@ -74,7 +80,8 @@ h1, h2 {
   color: #a3bcb6;
 }
 
-.list-item-date {
+.list-item-date,
+.reminder-date {
   color: #f1b249;
 }
 
@@ -111,14 +118,75 @@ hr {
   width: 7%;
 }
 
-a:hover, a:visited {
+a:hover,
+a:visited {
   text-decoration: none;
+  color: #39603D;
+}
+
+.green-link {
+  color: #39603D;
 }
 
 .nav-container {
   width: 84%;
 }
 
-footer > p > img {
+footer>p>img {
   height: 24px;
+}
+
+.transparent-icon {
+  height: 200px;
+  opacity: 0.17;
+}
+
+.single-reminder-container {
+  flex-grow: 1;
+  width: 80%;
+}
+
+.single-reminder-innerbox {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.single-reminder-img-container {
+  width: 80px;
+  height: 80px;
+}
+
+.btn-outline-dark {
+  border-color: #3c403d !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: #3c403d !important;
+}
+
+.btn-primary {
+  background-color: #a3bcb6 !important;
+  border-color: #a3bcb6 !important;
+}
+
+.btn-danger {
+  background-color: #f1b249 !important;
+  border-color: #f1b249 !important;
+}
+
+.btn-outline-secondary {
+  border-color: #39603D;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #39603D;
+}
+
+.buttons-container>button {
+  margin: 10px;
 }

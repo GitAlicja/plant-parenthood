@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import "../../App.css";
 
 
@@ -12,7 +11,8 @@ class TrefleSearchResults extends React.Component {
     loading: true,
     searchTerm: "",
     timeoutID: 0,
-    numOfResults: ""
+    numOfResults: "", 
+    displayIcon: true
   };
 
   componentDidMount() {
@@ -24,7 +24,8 @@ class TrefleSearchResults extends React.Component {
       this.setState({
         results: [],
         loading: false,
-        numOfResults: ""
+        numOfResults: "",
+        displayIcon: true
       });
       return;
     }
@@ -35,7 +36,8 @@ class TrefleSearchResults extends React.Component {
         this.setState({
           results: resp.data.data,
           loading: false,
-          numOfResults: resp.data.meta.total
+          numOfResults: resp.data.meta.total,
+          displayIcon: false
         });
       });
   };
@@ -64,6 +66,8 @@ class TrefleSearchResults extends React.Component {
         {this.state.loading && (<div className="spinner-border text-light" role="status">
           <span className="sr-only">Loading...</span>
         </div>)}
+
+        {this.state.displayIcon && (<div><img src="/images/magnifying-glass.png" alt="loupe" className="transparent-icon mt-3 mb-4" /></div>)}
 
         {this.state.results.map((plant, key) => {
 
