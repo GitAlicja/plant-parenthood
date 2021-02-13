@@ -87,7 +87,6 @@ export default class TrefleInfoPlantList extends Component {
                 );
               }
             )}
-          <p> Leaf Images: </p>
           {hasLeafImages &&
             this.props.trefleInfoPlant.main_species.images.leaf.map((leaf) => {
               return (

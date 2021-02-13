@@ -1,16 +1,16 @@
 import React from "react";
 import axios from "axios";
+import "../../App.css";
 
 class EditUserProfile extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       username: this.props.theUser.username,
       email: this.props.theUser.email,
-      profileImg: ""
-    }
-  };
+      profileImg: "",
+    };
+  }
 
   handleChangeInput = (event) => {
     this.setState({
@@ -32,29 +32,58 @@ class EditUserProfile extends React.Component {
 
     axios.post("/api/upload", uploadData).then((resp) => {
       this.setState({
-        profileImg: resp.data.secure_url
+        profileImg: resp.data.secure_url,
       });
     });
   };
 
   render() {
     return (
-      <div>
-        <h3>Edit Profile</h3>
+      <div className="plant-edit-container">
+        <h3>Edit your profile</h3>
         <form>
-          <label>
-            Username:
-          <input type="text" name="username" value={this.state.username} onChange={this.handleChangeInput} />
-          </label>
-          <label>
-            Email:
-          <input type="text" name="email" value={this.state.email} onChange={this.handleChangeInput} />
-          </label>
-          <label>
-            Profile Image:
-          <input type="file" name="profileImg" onChange={this.uploadHandler} />
-          </label>
-          <br /><br />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" for="username">
+              Username
+            </label>
+            <div className="col-7">
+              <input
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChangeInput}
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" for="email">
+              Email
+            </label>
+            <div className="col-7">
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChangeInput}
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" for="profileImage">
+              Image
+            </label>
+            <div className="col-sm-5">
+              <input
+                type="file"
+                name="profileImg"
+                onChange={this.uploadHandler}
+                className="form-control-file"
+              />
+            </div>
+          </div>
+
           <button onClick={this.submitHandler} className="btn btn-primary">
             Save Changes
           </button>
@@ -62,7 +91,6 @@ class EditUserProfile extends React.Component {
       </div>
     );
   }
-
 }
 
 export default EditUserProfile;
