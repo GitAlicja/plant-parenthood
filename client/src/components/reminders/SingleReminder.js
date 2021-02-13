@@ -95,7 +95,7 @@ class SingleReminder extends React.Component {
             </div>
             )}
         </div>
-        <Link to="/reminders" className="btn btn-outline-secondary btn-sm green-link">Back to Reminders</Link>
+        <Link to="/reminders" className="btn btn-outline-secondary btn-sm green-link mb-3">Back to Reminders</Link>
       </div>
     );
   }
