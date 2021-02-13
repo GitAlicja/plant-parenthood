@@ -8,7 +8,6 @@ class PlantApiDetails extends Component {
   render() {
     return (
       <div className="apiPlantDetails">
-        {/* How to refer to the component TrefleInfoPlantList in this component? */}
         <TrefleInfoPlantList trefleInfoPlant={this.props.dataFromApi} />
       </div>
     );

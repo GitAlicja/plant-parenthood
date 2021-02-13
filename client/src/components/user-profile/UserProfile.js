@@ -6,28 +6,25 @@ import "../../App.css";
 import EditUserProfile from "./EditUserProfile";
 
 class UserProfile extends React.Component {
-
   state = {
     user: null,
     loading: true,
-    displayEditForm: false
+    displayEditForm: false,
   };
 
   componentDidMount() {
-    axios
-      .get("/api/user-profile")
-      .then(resp => {
-        this.setState({
-          user: resp.data,
-          loading: false
-        });
+    axios.get("/api/user-profile").then((resp) => {
+      this.setState({
+        user: resp.data,
+        loading: false,
       });
-  };
+    });
+  }
 
   reloadHandler = () => {
     this.setState({
       // loading: true,
-      displayEditForm: false
+      displayEditForm: false,
     });
     this.componentDidMount(); // reload data
   };
@@ -36,15 +33,20 @@ class UserProfile extends React.Component {
     return (
       <div>
         {/* Bootstrap spinner */}
-        {this.state.loading && (<div className="spinner-border text-light" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
+        {this.state.loading && (
+          <div className="spinner-border text-light" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
         )}
 
         {this.state.user && (
           <div>
             {/* default image can be changed in the edit form */}
-            <img src={this.state.user.profileImg || "/images/user.png"} alt="user profile" className="user-prifile-image" />
+            <img
+              src={this.state.user.profileImg || "/images/user.png"}
+              alt="user profile"
+              className="user-profile-image"
+            />
             <h4>Welcome, {this.state.user.username}</h4>
             <p>Your email: {this.state.user.email}</p>
             <br />
@@ -55,15 +57,24 @@ class UserProfile extends React.Component {
         )}
         <br />
         <br />
-        {this.state.user && this.state.displayEditForm ?
-          (<div>
-            <button onClick={() => this.setState({ displayEditForm: false })}>Close</button>
-            <EditUserProfile theUser={this.state.user} reloadHandler={this.reloadHandler} />
-          </div>) :
-          (<button onClick={() => this.setState({ displayEditForm: true })}>Edit Profile</button>)}
+        {this.state.user && this.state.displayEditForm ? (
+          <div>
+            <button onClick={() => this.setState({ displayEditForm: false })}>
+              Close
+            </button>
+            <EditUserProfile
+              theUser={this.state.user}
+              reloadHandler={this.reloadHandler}
+            />
+          </div>
+        ) : (
+          <button onClick={() => this.setState({ displayEditForm: true })}>
+            Edit Profile
+          </button>
+        )}
       </div>
     );
-  };
+  }
 }
 
 export default UserProfile;
