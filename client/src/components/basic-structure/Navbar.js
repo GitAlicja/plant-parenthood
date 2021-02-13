@@ -10,36 +10,40 @@ const logoutUser = (props) => {
 };
 
 const Navbar = (props) => {
+
   if (props.userInSession) {
     return (
-      <nav>
+      <div className="nav-container" >
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <Link to="#" className="navbar-brand" >Plant Parenthood</Link>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <Link to="/" className="nav-link" >Home</Link>
+              </li>
+              <li class="nav-item">
+                <Link to="/user-profile" className="nav-link" >User Profile</Link>
+              </li>
+            </ul>
+            <Link to="/">
+              <button onClick={() => logoutUser(props)} className="btn btn-outline-dark btn-sm">Logout</button>
+            </Link>
+          </div>
+        </nav>
         <div>
-          <ul>
-            <li>
-              <Link to="/user-profile" >User Profile</Link>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/">
-                <button onClick={() => logoutUser(props)}>Logout</button>
-              </Link>
-            </li>
-          </ul>
+          <h4 className="mt-3" style={{color: "#39603D"}}>Hello, {props.userInSession.username} !</h4>
         </div>
-        <div>
-          <h3>Hello, {props.userInSession.username} !</h3>
-        </div>
-      </nav>
+      </div>
     );
   } else {
     return (
-      <div>
-        <nav>
+      <nav>
         <h3>Welcome to Plant Parenthood!</h3>
-        </nav>
-      </div>
+      </nav>
     );
   }
 };

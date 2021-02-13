@@ -42,11 +42,7 @@ class UserProfile extends React.Component {
         {this.state.user && (
           <div>
             {/* default image can be changed in the edit form */}
-            <img
-              src={this.state.user.profileImg || "/images/user.png"}
-              alt="user profile"
-              className="user-profile-image"
-            />
+            <img src={this.state.user.profileImg || "/images/user.png"} alt="user profile" className="user-profile-image" />
             <h4>Welcome, {this.state.user.username}</h4>
             <p>Your email: {this.state.user.email}</p>
             <br />

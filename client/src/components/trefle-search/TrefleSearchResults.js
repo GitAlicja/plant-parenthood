@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import "../../App.css";
 
 
@@ -12,7 +11,8 @@ class TrefleSearchResults extends React.Component {
     loading: true,
     searchTerm: "",
     timeoutID: 0,
-    numOfResults: ""
+    numOfResults: "", 
+    displayIcon: true
   };
 
   componentDidMount() {
@@ -24,7 +24,8 @@ class TrefleSearchResults extends React.Component {
       this.setState({
         results: [],
         loading: false,
-        numOfResults: ""
+        numOfResults: "",
+        displayIcon: true
       });
       return;
     }
@@ -35,7 +36,8 @@ class TrefleSearchResults extends React.Component {
         this.setState({
           results: resp.data.data,
           loading: false,
-          numOfResults: resp.data.meta.total
+          numOfResults: resp.data.meta.total,
+          displayIcon: false
         });
       });
   };
@@ -55,25 +57,50 @@ class TrefleSearchResults extends React.Component {
   render() {
     console.log(this.state.results)
     return (
-      <div>
+      <div className="list-main-container">
+        <h2>Find Your Plants</h2>
+        <div>
+          <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control mb-4' placeholder='Search plant...'></input>
+        </div>
         {/* Bootstrap spinner */}
-        {/* {this.state.loading && (<div className="spinner-border text-light" role="status">
-                  <span className="sr-only">Loading...</span>
-              </div>)} */}
+        {this.state.loading && (<div className="spinner-border text-light" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>)}
 
-        <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control input-field' placeholder='Search plant...'></input>
+        {this.state.displayIcon && (<div><img src="/images/magnifying-glass.png" alt="loupe" className="transparent-icon mt-3 mb-4" /></div>)}
 
         {this.state.results.map((plant, key) => {
+
+          const headline = plant.common_name || plant.scientific_name;
+          const otherNames = [];
+          if (plant.common_name) {
+            otherNames.push(plant.scientific_name);
+            if (plant.synonyms.length > 0) {
+              otherNames.push(plant.synonyms[0]);
+            }
+          } else if (plant.synonyms.length > 0) {
+            otherNames.push(plant.synonyms[0]);
+            if (plant.synonyms.length > 1) {
+              otherNames.push(plant.synonyms[1]);
+            }
+          }
+
           return (
-            <div className="list-result" key={plant.id}>
+            <div className="list-item shadow p-3 mb-4 bg-body rounded" key={plant.id}>
               <Link to={'/search/detail/' + plant.slug} >
-                {plant.common_name ? (<h3>{plant.common_name}</h3>) : (<h3>Scientific name</h3>)}
-                <p>{plant.scientific_name}</p>
+                <div className="list-item-innerbox">
+                  <div className="list-item-img-container"><img src={plant.image_url || "/images/growing.png"} /></div>
+                  <div className="list-item-names">
+                    <h5 className="list-item-headline">{headline}</h5>
+                    {otherNames.length > 0 && (<p className="list-item-paragraph">{otherNames.join(', ')}</p>)}
+                  </div>
+                  <div className="list-item-arrow">&#62;</div>
+                </div>
               </Link>
-              </div>
+            </div>
           );
         })}
-        <p>{ this.state.numOfResults }</p>
+        {this.state.numOfResults ? (<p>Total: {this.state.numOfResults}</p>) : ""}
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import "../../App.css";
 
 class PlantCollection extends React.Component {
@@ -44,26 +43,30 @@ class PlantCollection extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="list-main-container">
+        <h2>Your Plants Collection</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (
           <div className="spinner-border text-light" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         )}
-
         {/* <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control input-field' placeholder='Search beers...'></input> */}
 
-        {this.state.plants.map((plant, key) => {
+        { !this.state.loading && this.state.plants.length === 0 ? (<div>
+          <h4>No plants yet!</h4>
+          <img src="/images/plants.png" alt="plants collection icon" className="transparent-icon mt-3 mb-4" />
+        </div>) : this.state.plants.map((plant, key) => {
           return (
-            <div className="list-result" key={plant._id}>
+            <div className="list-item shadow p-3 mb-4 bg-body rounded" key={plant._id}>
               <Link to={'/my-plants/detail/' + plant._id + "/" + plant.trefleSlug}>
-                <div>
-                  <img src={plant.plantImg} alt="small plant" />
-                </div>
-                <div>
-                  <h3>{plant.name}</h3>
-                  <p>{plant.reminders.length} reminders</p>
+                <div className="list-item-innerbox">
+                  <div className="list-item-img-container"><img src={plant.plantImg || "/images/growing.png"} alt="small plant" /></div>
+                  <div className="list-item-names">
+                    <h5 className="list-item-headline">{plant.name}</h5>
+                    <p className="list-item-paragraph">{plant.reminders.length} reminders</p>
+                  </div>
+                  <div className="list-item-arrow">&#62;</div>
                 </div>
               </Link>
             </div>
