@@ -63,7 +63,7 @@ h4 {
 .list-item {
   width: 100%;
   background-color: #ffffff;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border: 1px solid #ced4da;
 }
 
@@ -84,7 +84,7 @@ h4 {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .list-item-names {
@@ -97,7 +97,7 @@ h4 {
 }
 
 .list-item-paragraph {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #a3bcb6;
 }
 
@@ -126,7 +126,7 @@ h4 {
 }
 
 .home-headline {
-  color: #A3BCB6;
+  color: #a3bcb6;
   margin-top: 10px;
 }
 
@@ -142,11 +142,11 @@ hr {
 a:hover,
 a:visited {
   text-decoration: none;
-  color: #39603D;
+  color: #39603d;
 }
 
 .green-link {
-  color: #39603D;
+  color: #39603d;
 }
 
 .nav-container {
@@ -201,11 +201,11 @@ footer > p > img {
 }
 
 .btn-outline-secondary {
-  border-color: #39603D;
+  border-color: #39603d;
 }
 
 .btn-outline-secondary:hover {
-  background-color: #39603D;
+  background-color: #39603d;
 }
 
 .buttons-container > button {
@@ -223,25 +223,19 @@ footer > p > img {
   flex-wrap: wrap;
   justify-content: center;
   box-sizing: border-box;
-  flex-grow: 1;
-  width: 100%;
   height: 500px;
   margin: 20px;
   padding: 16px;
   background-color: white;
   border-radius: 5px;
 }
-
 .signup-photo {
   display: flex;
-  margin-right: 100px;
-  margin-left: 100px;
-  margin-top: 50px;
-  margin-bottom: 50px;
   justify-content: center;
   background-image: url("https://res.cloudinary.com/sagacity/image/upload/c_crop,h_4204,w_5946,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/shutterstock_1120425188_xkrkev.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 5px;
+  width: 100%;
 }

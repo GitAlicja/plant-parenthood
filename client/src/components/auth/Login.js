@@ -29,10 +29,10 @@ class Login extends Component {
             <h2>Login</h2>
 
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="username">
+              <label className="col-sm-5 col-form-label" for="username">
                 Username:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="text"
                   name="username"
@@ -43,10 +43,10 @@ class Login extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="password">
+              <label className="col-sm-5 col-form-label" for="password">
                 Password:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="password"
                   name="password"

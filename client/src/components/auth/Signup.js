@@ -46,10 +46,10 @@ class Signup extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <h2>Create an account</h2>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="username">
+              <label className="col-sm-5 col-form-label" for="username">
                 Username:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="text"
                   name="username"
@@ -61,10 +61,10 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="password">
+              <label className="col-sm-5 col-form-label" for="password">
                 Password:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="password"
                   name="password"
@@ -76,10 +76,10 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="email">
+              <label className="col-sm-5 col-form-label" for="email">
                 Email:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="email"
                   name="email"
