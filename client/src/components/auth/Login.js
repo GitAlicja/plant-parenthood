@@ -23,29 +23,48 @@ class Login extends Component {
   };
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={(e) => this.handleChange(e)}
-          />
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={(e) => this.handleChange(e)}
-          />
+      <div className="signup-photo">
+        <div className="form-container">
+          <form onSubmit={this.handleFormSubmit}>
+            <h2>Login</h2>
 
-          <input type="submit" value="Login" />
-        </form>
-        <p>
-          Don't have account?
-          <Link to={"/signup"}> Signup</Link>
-        </p>
+            <div className="form-group row">
+              <label className="col-sm-2 col-form-label" for="username">
+                Username:
+              </label>
+              <div className="col-7">
+                <input
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={(e) => this.handleChange(e)}
+                  className="form-control"
+                />
+              </div>
+            </div>
+            <div className="form-group row">
+              <label className="col-sm-2 col-form-label" for="password">
+                Password:
+              </label>
+              <div className="col-7">
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={(e) => this.handleChange(e)}
+                  className="form-control"
+                />
+              </div>
+            </div>
+            <input type="submit" value="Login" />
+            <br></br>
+
+            <p>
+              Don't have account? <br></br>
+              <Link to={"/signup"}> Signup</Link>
+            </p>
+          </form>
+        </div>
       </div>
     );
   }

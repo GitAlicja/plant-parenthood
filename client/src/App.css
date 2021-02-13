@@ -2,51 +2,87 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #3c403d;
+  background-color: #daded4 !important;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 .list-result {
   border: solid 1px lightgrey;
   margin: 10px 50px;
 }
 
-.user-prifile-image {
+.user-profile-image {
   height: 100px;
 }
 
 .home-icons {
   height: 200px;
+}
+
+.form-group {
+  margin: 20px;
+}
+
+.plant-edit-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 30px;
+  flex-grow: 1;
+  color: #3c403d;
+}
+
+.plantImg {
+  width: 180px;
+  height: 180px;
+}
+
+.btn-primary {
+  background-color: #f1b24a !important;
+  border-color: #f1b24a !important;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
+  height: 500px;
+  margin: 20px;
+  max-width: 500px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.signup-photo {
+  display: flex;
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  justify-content: center;
+  background-image: url("https://res.cloudinary.com/sagacity/image/upload/c_crop,h_4204,w_5946,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/shutterstock_1120425188_xkrkev.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
 }

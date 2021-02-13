@@ -1,5 +1,5 @@
 //form to edit only the custom fields of the plant
-
+import "../../App.css";
 import React, { Component } from "react";
 import axios from "axios";
 
@@ -52,36 +52,58 @@ export default class EditPlantDetails extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Edit your plant</h2>
+      <div className="plant-edit-container">
+        <h3>Edit your plant</h3>
         <form onSubmit={this.handleFormSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={(e) => this.handleChange(e)}
-            className="form-control input-field"
-          ></input>
-          <textarea
-            name="notes"
-            placeholder="Description"
-            value={this.state.notes}
-            onChange={(e) => this.handleChange(e)}
-            className="form-control input-field"
-          ></textarea>
-          <input
-            type="file"
-            name="plantImg"
-            // value={this.state.plantImg}
-            onChange={(e) => this.uploadHandler(e)}
-          ></input>
-          <img
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" for="plant-name">
+              Plant name
+            </label>
+            <div className="col-7">
+              <input
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={(e) => this.handleChange(e)}
+                className="form-control"
+              ></input>
+            </div>
+          </div>
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" for="plant-name">
+              Your notes
+            </label>
+            <div className="col-sm-10">
+              <textarea
+                name="notes"
+                placeholder="Notes"
+                value={this.state.notes}
+                onChange={(e) => this.handleChange(e)}
+                className="form-control input-field"
+                rows="5"
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" for="plantImg">
+              Image
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="file"
+                name="plantImg"
+                // value={this.state.plantImg}
+                onChange={(e) => this.uploadHandler(e)}
+                className="form-control-file"
+              ></input>
+            </div>
+          </div>
+          {/* <img
+            className="plantImg"
             src={this.state.plantImg || "/images/growing.png"}
-            width="180"
-            height="180"
             alt="defaultPlantImg"
-          />
+          /> */}
           <button onClick={this.submitHandler} className="btn btn-primary">
             Save
           </button>
