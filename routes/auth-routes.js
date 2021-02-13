@@ -27,6 +27,7 @@ authRoutes.post("/signup", (req, res, next) => {
   User.findOne({ username }, (err, foundUser) => {
     if (err) {
       res.status(500).json({ message: "Username check went bad." });
+      // console.log(err)
       return;
     }
 
