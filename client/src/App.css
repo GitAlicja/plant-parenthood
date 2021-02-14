@@ -17,7 +17,8 @@ h2 {
   margin: 30px auto;
 }
 
-h4, h5 {
+h4,
+h5 {
   font-weight: 500;
 }
 
@@ -60,6 +61,11 @@ h4, h5 {
   width: 80%;
 }
 
+.details-list-main-container {
+  flex-grow: 1;
+  width: 100%;
+}
+
 .list-item {
   width: 100%;
   background-color: #ffffff;
@@ -80,7 +86,7 @@ h4, h5 {
   margin-right: 20px;
 }
 
-.list-item-img-container > img {
+.list-item-img-container>img {
   width: 60px;
   height: 60px;
   object-fit: cover;
@@ -162,7 +168,7 @@ a:visited {
   width: 84%;
 }
 
-footer > p > img {
+footer>p>img {
   height: 24px;
 }
 
@@ -217,7 +223,7 @@ footer > p > img {
   background-color: #39603D;
 }
 
-.buttons-container > button {
+.buttons-container>button {
   margin: 10px;
 }
 
@@ -269,7 +275,7 @@ footer > p > img {
   width: 100%;
 }
 
-.notes-paragraph > p {
+.notes-paragraph>p {
   border: 1px solid #ced4da;
   border-radius: .25rem;
   text-align: left;
@@ -279,6 +285,30 @@ footer > p > img {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  width: 100%;
+}
+
+.plant-details-btn {
+  flex-grow: 1;
+}
+
+.plant-details-btn.active {
+  background-color: #3c403d !important;
+}
+
+.no-radius-right {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.no-borders-btn {
+  border-left: none;
+  border-right: none;
+}
+
+.no-radius-left {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
 }
 
 .welcome-headline {

@@ -67,7 +67,7 @@ class TrefleSearchResults extends React.Component {
           <span className="sr-only">Loading...</span>
         </div>)}
 
-        {this.state.displayIcon && (<div><img src="/images/magnifying-glass.png" alt="loupe" className="transparent-icon mt-3 mb-4" /></div>)}
+        {this.state.displayIcon && (<div><img src="/images/magnifying-glass.png" alt="small loupe" className="transparent-icon mt-3 mb-4" /></div>)}
 
         {this.state.results.map((plant, key) => {
 
@@ -89,7 +89,7 @@ class TrefleSearchResults extends React.Component {
             <div className="list-item shadow p-3 mb-4 bg-body rounded" key={plant.id}>
               <Link to={'/search/detail/' + plant.slug} >
                 <div className="list-item-innerbox">
-                  <div className="list-item-img-container"><img src={plant.image_url || "/images/growing.png"} /></div>
+                  <div className="list-item-img-container"><img src={plant.image_url || "/images/growing.png"} alt="small plant" /></div>
                   <div className="list-item-names">
                     <h5 className="green-headline">{headline}</h5>
                     {otherNames.length > 0 && (<p className="list-item-paragraph">{otherNames.join(', ')}</p>)}

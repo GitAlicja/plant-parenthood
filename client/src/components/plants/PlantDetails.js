@@ -102,12 +102,14 @@ export default class PlantDetails extends Component {
             <span className="sr-only">Loading...</span>
           </div>
         )}
-        <div className="buttons-group">
-          {/* shows one tab and hides two others according to above handlers*/}
-          <button onClick={this.showCustomComponent} className="btn btn-outline-dark btn-sm" >My Notes</button>
-          <button onClick={this.showApiComponent} className="btn btn-outline-dark btn-sm" >About Plant</button>
-          <button onClick={this.showReminderComponent} className="btn btn-outline-dark btn-sm" >Reminders</button>
-        </div>
+        {!this.state.loading && (
+          <div className="buttons-group mb-3">
+            {/* shows one tab and hides two others according to above handlers*/}
+            <button onClick={this.showCustomComponent} className={"btn btn-outline-dark btn-sm plant-details-btn no-radius-right" + (this.state.customComponent && " active")} >My Notes</button>
+            <button onClick={this.showApiComponent} className={"btn btn-outline-dark btn-sm plant-details-btn no-borders-btn no-radius-right no-radius-left" + (this.state.apiComponent && " active")} >About Plant</button>
+            <button onClick={this.showReminderComponent} className={"btn btn-outline-dark btn-sm plant-details-btn no-radius-left" + (this.state.reminderComponent && " active")} >Reminders</button>
+          </div>
+        )}
 
         {this.state.customComponent && (
           <PlantCustomFields dataFromUser={this.state.userPlant} />
