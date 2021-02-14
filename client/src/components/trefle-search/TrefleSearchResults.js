@@ -91,7 +91,7 @@ class TrefleSearchResults extends React.Component {
                 <div className="list-item-innerbox">
                   <div className="list-item-img-container"><img src={plant.image_url || "/images/growing.png"} /></div>
                   <div className="list-item-names">
-                    <h5 className="list-item-headline">{headline}</h5>
+                    <h5 className="green-headline">{headline}</h5>
                     {otherNames.length > 0 && (<p className="list-item-paragraph">{otherNames.join(', ')}</p>)}
                   </div>
                   <div className="list-item-arrow">&#62;</div>

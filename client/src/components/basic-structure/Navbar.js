@@ -34,8 +34,9 @@ const Navbar = (props) => {
             </Link>
           </div>
         </nav>
-        <div>
-          <h4 className="mt-3" style={{color: "#39603D"}}>Hello, {props.userInSession.username} !</h4>
+        <div className="mt-3">
+          <h4>Hello, {props.userInSession.username} !</h4>
+          <hr />
         </div>
       </div>
     );

@@ -35,7 +35,7 @@ const PlantListOfReminders = (props) => {
               <div className="list-item-innerbox">
                 <div className="list-item-img-container"><img src={typeOfCareIcon} /></div>
                 <div className="list-item-names">
-                  <h5 className="list-item-headline">{reminder.typeOfCare}</h5>
+                  <h5 className="green-headline">{reminder.typeOfCare}</h5>
                   {/* date and time output format */}
                   <p className="list-item-date">on {new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
                   {/* <p>at {new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p> */}

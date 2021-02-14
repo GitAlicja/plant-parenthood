@@ -62,7 +62,7 @@ class SingleReminder extends React.Component {
     };
 
     return (
-      <div className="single-reminder-container">
+      <div className="single-reminder-container mb-4">
         <h2>Remind me to...</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (<div className="spinner-border text-light" role="status">
@@ -76,7 +76,7 @@ class SingleReminder extends React.Component {
             <div>
               <div><img src={typeOfCareIcon} alt="reminder icon" className="single-reminder-img-container mb-2" /></div>
               <div>
-                <h4 className="reminder-header">{this.state.reminder.typeOfCare} {this.state.reminder.plant.name}</h4>
+                <h4 className="green-headline">{this.state.reminder.typeOfCare} {this.state.reminder.plant.name}</h4>
                 <p className="reminder-date">on {new Date(this.state.reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
                 <p>Remind me at {new Date(this.state.reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p>
                 <p>Set for every {this.state.reminder.frequency} {this.state.reminder.unit}</p>
@@ -84,18 +84,20 @@ class SingleReminder extends React.Component {
             </div>
           )}
 
-          {this.state.reminder && this.state.displayEditForm ?
+        </div>
+        <Link to="/reminders" className="btn btn-outline-secondary btn-sm green-link mb-4">Back to Reminders</Link>
+        <div>
+        {this.state.reminder && this.state.displayEditForm ?
             (<div>
               <button onClick={() => this.setState({ displayEditForm: false })}>Close</button>
               <EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />
             </div>) :
-            (<div className="buttons-container mb-2">
+            (<div className="buttons-container">
               <button onClick={() => this.setState({ displayEditForm: true })} className="btn btn-primary btn-sm">Edit Reminder</button>
               <button onClick={() => this.deleteReminder()} className="btn btn-danger btn-sm">Delete reminder</button>
             </div>
             )}
         </div>
-        <Link to="/reminders" className="btn btn-outline-secondary btn-sm green-link mb-3">Back to Reminders</Link>
       </div>
     );
   }
