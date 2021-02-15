@@ -8,7 +8,7 @@ const PlantListOfReminders = (props) => {
   // props.plantReminders
 
   return (
-    <div className="details-list-main-container">
+    <div className="details-list-main-container mb-2">
       <h4>Remind me to...</h4>
       { props.plantReminders.length === 0 ? (<div>
         <h5>No reminders yet!</h5>

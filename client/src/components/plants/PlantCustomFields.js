@@ -15,7 +15,7 @@ class PlantCustomFields extends Component {
           <img src={this.props.dataFromUser.plantImg || "/images/growing.png"} alt="custom plant" className="img-fluid" />
         </div>
         <div className="notes-paragraph">
-          <h5 className="green-headline">Your Notes</h5>
+          <h5 className="yellow-headline">Your Notes</h5>
           <p className="p-2">{this.props.dataFromUser.notes}</p>
         </div>
       </div>

@@ -101,6 +101,10 @@ h5 {
   color: #39603d;
 }
 
+.yellow-headline {
+  color: #f1b249;
+}
+
 /* .list-item-headline,
 .reminder-header, .plant-headline {
   color: #39603d;
@@ -261,7 +265,7 @@ footer>p>img {
   width: 80%;
 }
 
-.single-plant-innerbox {
+.single-plant-innerbox, .trefle-plant-info-innerbox {
   width: 100%;
   background-color: #ffffff;
   border: 1px solid #ced4da;
@@ -315,4 +319,29 @@ footer>p>img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+table {
+  text-align: left;
+}
+
+.tr-color {
+  background-color: #daded4;
+}
+
+.trefle-growth-notes > p {
+  text-align: left;
+  font-size: .8rem;
+}
+
+.trefle-distribution, .trefle-names, .trefle-plant-growth {
+  width: 84%;
+}
+
+.distribution-countries > li {
+  text-align: left;
+}
+
+.img-fluid {
+  border-radius: .25rem !important;
 }

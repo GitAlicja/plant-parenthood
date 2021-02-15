@@ -119,8 +119,7 @@ export default class PlantDetails extends Component {
         )}
         {this.state.reminderComponent && (
           <PlantListOfReminders
-            plantReminders={this.state.userPlant.reminders}
-          />
+            plantReminders={this.state.userPlant.reminders} />
         )}
 
         {/* <div>
