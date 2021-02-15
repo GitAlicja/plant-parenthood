@@ -18,7 +18,7 @@ export default class PlantDetails extends Component {
     userPlant: null,
     loading: true,
     displayEditForm: false,
-    displayReminders: false,
+    // displayReminders: false,
   };
 
   // happens after first render
@@ -39,7 +39,7 @@ export default class PlantDetails extends Component {
           apiPlant: responseFromApi.data.apiInfo.data,
           userPlant: responseFromApi.data.ourModel,
           loading: false,
-          customComponent: true
+          customComponent: true,
         });
       });
   };
@@ -141,11 +141,12 @@ export default class PlantDetails extends Component {
             </button>
           )}
         </div> */}
+        <br />
         <Link to="/my-plants" className="btn btn-outline-secondary btn-sm green-link mb-4">Back to Collection</Link>
         <div>
-          {this.state.userPlant && this.state.displayEditForm ? (
+          {this.state.userPlant && this.state.displayEditForm && (
             <div>
-              <button onClick={() => this.setState({ displayEditForm: false })}>
+              <button onClick={() => this.setState({ displayEditForm: false })} className="btn btn-outline-dark btn-sm">
                 Close Edit Plant
               </button>
               <EditPlantDetails
@@ -153,11 +154,12 @@ export default class PlantDetails extends Component {
                 reloadHandler={this.reloadHandler}
               />
             </div>
-          ) : (
-              <button onClick={() => this.setState({ displayEditForm: true })} className="btn btn-primary btn-sm">
-                Edit Your Plant
-              </button>
-            )}
+          )}
+          {this.state.userPlant && this.state.customComponent && !this.state.displayEditForm &&
+            (<button onClick={() => this.setState({ displayEditForm: true })} className="btn btn-primary btn-sm">Edit Your Plant</button>)}
+
+          {this.state.userPlant && this.state.reminderComponent && !this.state.displayEditForm &&
+            (<Link to={`/add-reminder/${this.state.userPlant._id}`} className="btn btn-primary btn-sm white-text">Add New Reminder</Link>)}
         </div>
       </div>
     );

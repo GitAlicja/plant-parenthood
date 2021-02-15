@@ -89,7 +89,7 @@ class SingleReminder extends React.Component {
         <div>
         {this.state.reminder && this.state.displayEditForm ?
             (<div>
-              <button onClick={() => this.setState({ displayEditForm: false })}>Close</button>
+              <button onClick={() => this.setState({ displayEditForm: false })} className="btn btn-outline-dark btn-sm">Close</button>
               <EditReminder theReminder={this.state.reminder} reloadHandler={this.reloadHandler} />
             </div>) :
             (<div className="buttons-container">

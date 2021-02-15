@@ -24,17 +24,19 @@ export default class TrefleSearchDetails extends Component {
   render() {
     console.log("CHECK THE STATE!", this.state);
     if (this.state.loading) {
-      return <h1>Loading...</h1>;
+      return <div className="spinner-border text-light" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
     }
     return (
       <div className="treflePlantDetails">
         {/* {this.state.plant.scientific_name} */}
 
         <TrefleInfoPlantList trefleInfoPlant={this.state.plant} />
-
-        <Link to={`/add-plant/${this.state.plant.slug}`}>
-          Add to My Plant Collection
-        </Link>
+        <br />
+        <Link to="/search" className="btn btn-outline-secondary btn-sm green-link mb-4">Back to Search</Link>
+        <br />
+        <Link to={`/add-plant/${this.state.plant.slug}`} className="btn btn-primary btn-sm mb-4">Add to My Collection</Link>
       </div>
     );
   }

@@ -345,3 +345,11 @@ table {
 .img-fluid {
   border-radius: .25rem !important;
 }
+
+.spinner-border {
+  margin: 20px auto;
+}
+
+.white-text {
+  color: #ffffff !important;
+}
