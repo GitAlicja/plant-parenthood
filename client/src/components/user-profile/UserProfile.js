@@ -31,7 +31,7 @@ class UserProfile extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="single-user-container mb-4">
         {/* Bootstrap spinner */}
         {this.state.loading && (
           <div className="spinner-border text-light" role="status">
@@ -40,34 +40,29 @@ class UserProfile extends React.Component {
         )}
 
         {this.state.user && (
-          <div>
+          <div className="single-user-innerbox shadow p-3 mb-4 bg-body rounded">
             {/* default image can be changed in the edit form */}
             <img src={this.state.user.profileImg || "/images/user.png"} alt="user profile" className="user-profile-image" />
-            <h4>Welcome, {this.state.user.username}</h4>
-            <p>Your email: {this.state.user.email}</p>
-            <br />
-            <Link to="/my-plants">Your Plants Collection</Link>
-            <br />
-            <Link to="/search">Search Plants</Link>
+            <h5><span className="yellow-headline">Username:</span> {this.state.user.username}</h5>
+            <h6><span className="green-headline">Email:</span> {this.state.user.email}</h6>
           </div>
         )}
+
         <br />
-        <br />
+        <div>
+          <Link to="/my-plants" className="btn btn-outline-secondary btn-sm green-link mb-4">Plants Collection</Link>
+          <Link to="/search" className="btn btn-outline-secondary btn-sm green-link mb-4">Search Plants</Link>
+        </div>
         {this.state.user && this.state.displayEditForm ? (
           <div>
-            <button onClick={() => this.setState({ displayEditForm: false })}>
+            <button onClick={() => this.setState({ displayEditForm: false })} className="btn btn-outline-dark btn-sm">
               Close
             </button>
-            <EditUserProfile
-              theUser={this.state.user}
-              reloadHandler={this.reloadHandler}
-            />
-          </div>
-        ) : (
-          <button onClick={() => this.setState({ displayEditForm: true })}>
-            Edit Profile
-          </button>
-        )}
+            <EditUserProfile theUser={this.state.user} reloadHandler={this.reloadHandler} /></div>) : (
+            <button onClick={() => this.setState({ displayEditForm: true })} className="btn btn-primary btn-sm">
+              Edit Profile
+            </button>
+          )}
       </div>
     );
   }

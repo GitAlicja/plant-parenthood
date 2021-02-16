@@ -7,7 +7,7 @@ class PlantApiDetails extends Component {
   // this.props.dataFromApi to match in PlantDetails
   render() {
     return (
-      <div className="apiPlantDetails">
+      <div>
         <TrefleInfoPlantList trefleInfoPlant={this.props.dataFromApi} />
       </div>
     );
