@@ -8,11 +8,11 @@ const PlantListOfReminders = (props) => {
   // props.plantReminders
 
   return (
-    <div className="list-main-container">
+    <div className="details-list-main-container mb-2">
       <h4>Remind me to...</h4>
       { props.plantReminders.length === 0 ? (<div>
         <h5>No reminders yet!</h5>
-        <img src="/images/calendar.png" alt="reminder icon" className="transparent-icon mt-3 mb-4" />
+        <img src="/images/calendar.png" alt="small calendar" className="transparent-icon mt-3 mb-4" />
       </div>) : props.plantReminders.map((reminder, key) => {
 
         let typeOfCareIcon = "";
@@ -33,12 +33,13 @@ const PlantListOfReminders = (props) => {
           <div className="list-item shadow p-3 mb-4 bg-body rounded" key={reminder._id}>
             <Link to={'/reminders/' + reminder._id}>
               <div className="list-item-innerbox">
-                <div className="list-item-img-container"><img src={typeOfCareIcon} /></div>
+                <div className="list-item-img-container"><img src={typeOfCareIcon} alt="type of care" /></div>
                 <div className="list-item-names">
-                  <h5 className="list-item-headline">{reminder.typeOfCare}</h5>
+                  <h5 className="green-headline">{reminder.typeOfCare}</h5>
                   {/* date and time output format */}
                   <p className="list-item-date">on {new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
                   {/* <p>at {new Date(reminder.reminderDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })}</p> */}
+                  <p className="list-item-paragraph">Set for every {reminder.frequency} {reminder.unit}</p>
                 </div>
                 <div className="list-item-arrow">&#62;</div>
               </div>

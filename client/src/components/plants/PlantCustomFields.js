@@ -9,19 +9,15 @@ class PlantCustomFields extends Component {
     // console.log("THIS.PROPS", this.props);
 
     return (
-      <div className="plantCustomFields">
-        <h3> Name: {this.props.dataFromUser.name}</h3>
-        <p> Your Notes: {this.props.dataFromUser.notes}</p>
-        <p>
-          {" "}
-          Your plant picture:{" "}
-          <img
-            src={this.props.dataFromUser.plantImg || "/images/growing.png"}
-            width="180"
-            height="180"
-            alt="defaultPlantImg"
-          />
-        </p>
+      <div className="single-plant-innerbox shadow p-4 mb-4 bg-body rounded">
+        <h3 className="green-headline mb-2">{this.props.dataFromUser.name}</h3>
+        <div className="mb-3">
+          <img src={this.props.dataFromUser.plantImg || "/images/growing.png"} alt="custom plant" className="img-fluid" />
+        </div>
+        <div className="notes-paragraph">
+          <h5 className="yellow-headline">Your Notes</h5>
+          <p className="p-2">{this.props.dataFromUser.notes}</p>
+        </div>
       </div>
     );
   }

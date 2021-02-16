@@ -56,7 +56,7 @@ class ListOfReminders extends React.Component {
                 <div className="list-item-innerbox">
                   <div className="list-item-img-container"><img src={typeOfCareIcon} alt="reminder icon" /></div>
                   <div className="list-item-names">
-                    <h5 className="list-item-headline">{reminder.plant.name}</h5>
+                    <h5 className="green-headline">{reminder.plant.name}</h5>
                     <p className="list-item-paragraph">{reminder.typeOfCare}</p>
                     {/* date and time output format */}
                     <p className="list-item-date">on {new Date(reminder.reminderDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>

@@ -104,7 +104,7 @@ export default class EditPlantDetails extends Component {
             src={this.state.plantImg || "/images/growing.png"}
             alt="defaultPlantImg"
           /> */}
-          <button onClick={this.submitHandler} className="btn btn-primary">
+          <button onClick={this.submitHandler} className="btn btn-primary btn-sm">
             Save
           </button>
         </form>

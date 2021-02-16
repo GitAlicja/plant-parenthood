@@ -12,14 +12,14 @@ const Home = () => {
             <h5 className="home-headline">Search Plants</h5>
           </Link>
         </div>
-        <hr />
+        <hr className="orange-hr" />
         <div>
           <Link to="/my-plants">
             <img src="/images/plants.png" alt="small plant" className="home-icons" />
             <h5 className="home-headline">Your Collection</h5>
           </Link>
         </div>
-        <hr />
+        <hr className="orange-hr" />
         <div>
           <Link to="/reminders">
             <img src="/images/calendar.png" alt="small calendar" className="home-icons" />

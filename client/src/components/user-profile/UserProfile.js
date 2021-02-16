@@ -31,7 +31,7 @@ class UserProfile extends React.Component {
 
   render() {
     return (
-      <div className="userprofile-container">
+      <div className="single-user-container mb-4">
         {/* Bootstrap spinner */}
         {this.state.loading && (
           <div className="spinner-border text-light" role="status">
@@ -70,11 +70,45 @@ class UserProfile extends React.Component {
           )}
         </div>
 
+        {this.state.user && (
+          <div className="single-user-innerbox shadow p-3 mb-4 bg-body rounded">
+            {/* default image can be changed in the edit form */}
+            <img
+              src={this.state.user.profileImg || "/images/user.png"}
+              alt="user profile"
+              className="user-profile-image"
+            />
+            <h5>
+              <span className="yellow-headline">Username:</span>{" "}
+              {this.state.user.username}
+            </h5>
+            <h6>
+              <span className="green-headline">Email:</span>{" "}
+              {this.state.user.email}
+            </h6>
+          </div>
+        )}
+
+        <br />
+        <div>
+          <Link
+            to="/my-plants"
+            className="btn btn-outline-secondary btn-sm green-link mb-4"
+          >
+            Plants Collection
+          </Link>
+          <Link
+            to="/search"
+            className="btn btn-outline-secondary btn-sm green-link mb-4"
+          >
+            Search Plants
+          </Link>
+        </div>
         {this.state.user && this.state.displayEditForm ? (
           <div>
             <button
-              className="btn btn-primary"
               onClick={() => this.setState({ displayEditForm: false })}
+              className="btn btn-outline-dark btn-sm"
             >
               Close
             </button>
@@ -85,8 +119,8 @@ class UserProfile extends React.Component {
           </div>
         ) : (
           <button
-            className="btn btn-primary"
             onClick={() => this.setState({ displayEditForm: true })}
+            className="btn btn-primary btn-sm"
           >
             Edit Profile
           </button>

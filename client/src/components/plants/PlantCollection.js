@@ -63,7 +63,7 @@ class PlantCollection extends React.Component {
                 <div className="list-item-innerbox">
                   <div className="list-item-img-container"><img src={plant.plantImg || "/images/growing.png"} alt="small plant" /></div>
                   <div className="list-item-names">
-                    <h5 className="list-item-headline">{plant.name}</h5>
+                    <h5 className="green-headline">{plant.name}</h5>
                     <p className="list-item-paragraph">{plant.reminders.length} reminders</p>
                   </div>
                   <div className="list-item-arrow">&#62;</div>

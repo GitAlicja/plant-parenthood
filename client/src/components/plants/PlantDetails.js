@@ -3,6 +3,7 @@
 //api plant details (component) (hides if other component is open vice versa)
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import PlantApiDetails from "./PlantApiDetails";
 import PlantCustomFields from "./PlantCustomFields";
 import EditPlantDetails from "./EditPlantDetails";
@@ -17,7 +18,7 @@ export default class PlantDetails extends Component {
     userPlant: null,
     loading: true,
     displayEditForm: false,
-    displayReminders: false,
+    // displayReminders: false,
   };
 
   // happens after first render
@@ -38,13 +39,13 @@ export default class PlantDetails extends Component {
           apiPlant: responseFromApi.data.apiInfo.data,
           userPlant: responseFromApi.data.ourModel,
           loading: false,
+          customComponent: true,
         });
       });
   };
 
   reloadHandler = () => {
     this.setState({
-      // loading: true,
       displayEditForm: false,
     });
     this.componentDidMount(); // reload data
@@ -87,16 +88,52 @@ export default class PlantDetails extends Component {
       reminderComponent: true,
     });
   };
+
   render() {
-    if (this.state.loading) {
-      return <p> Loading ... </p>;
-    }
+    // if (this.state.loading) {
+    //   return <p> Loading ... </p>;
+    // }
     return (
-      <div>
-        {/* shows one tab and hides two others according to above handlers*/}
-        <button onClick={this.showApiComponent}>Api Plant Details</button>
-        <button onClick={this.showCustomComponent}>User Plant Details</button>
-        <button onClick={this.showReminderComponent}>Show Reminder</button>
+      <div className="single-plant-container mb-4">
+        <h2>Plant Details</h2>
+        {/* Bootstrap spinner */}
+        {this.state.loading && (
+          <div className="spinner-border text-light" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        )}
+        {!this.state.loading && (
+          <div className="buttons-group mb-3">
+            {/* shows one tab and hides two others according to above handlers*/}
+            <button
+              onClick={this.showCustomComponent}
+              className={
+                "btn btn-outline-dark btn-sm plant-details-btn no-radius-right" +
+                (this.state.customComponent && " active")
+              }
+            >
+              My Notes
+            </button>
+            <button
+              onClick={this.showApiComponent}
+              className={
+                "btn btn-outline-dark btn-sm plant-details-btn no-borders-btn no-radius-right no-radius-left" +
+                (this.state.apiComponent && " active")
+              }
+            >
+              About Plant
+            </button>
+            <button
+              onClick={this.showReminderComponent}
+              className={
+                "btn btn-outline-dark btn-sm plant-details-btn no-radius-left" +
+                (this.state.reminderComponent && " active")
+              }
+            >
+              Reminders
+            </button>
+          </div>
+        )}
 
         {this.state.customComponent && (
           <PlantCustomFields dataFromUser={this.state.userPlant} />
@@ -130,16 +167,19 @@ export default class PlantDetails extends Component {
             </button>
           )}
         </div> */}
-
+        <br />
+        <Link
+          to="/my-plants"
+          className="btn btn-outline-secondary btn-sm green-link mb-4"
+        >
+          Back to Collection
+        </Link>
         <div>
-          {this.state.userPlant && this.state.displayEditForm ? (
+          {this.state.userPlant && this.state.displayEditForm && (
             <div>
               <button
-                onClick={() =>
-                  this.setState({
-                    displayEditForm: false,
-                  })
-                }
+                onClick={() => this.setState({ displayEditForm: false })}
+                className="btn btn-outline-dark btn-sm"
               >
                 Close Edit Plant
               </button>
@@ -148,17 +188,28 @@ export default class PlantDetails extends Component {
                 reloadHandler={this.reloadHandler}
               />
             </div>
-          ) : (
-            <button
-              onClick={() =>
-                this.setState({
-                  displayEditForm: true,
-                })
-              }
-            >
-              Edit Your Plant
-            </button>
           )}
+          {this.state.userPlant &&
+            this.state.customComponent &&
+            !this.state.displayEditForm && (
+              <button
+                onClick={() => this.setState({ displayEditForm: true })}
+                className="btn btn-primary btn-sm"
+              >
+                Edit Your Plant
+              </button>
+            )}
+
+          {this.state.userPlant &&
+            this.state.reminderComponent &&
+            !this.state.displayEditForm && (
+              <Link
+                to={`/add-reminder/${this.state.userPlant._id}`}
+                className="btn btn-primary btn-sm white-text"
+              >
+                Add New Reminder
+              </Link>
+            )}
         </div>
       </div>
     );
