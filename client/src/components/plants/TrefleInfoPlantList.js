@@ -55,17 +55,17 @@ export default class TrefleInfoPlantList extends Component {
         <h5 className="yellow-headline">Names</h5>
           <table className="table table-responsive d-table table-borderless">
             <tbody>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>Common name</td>
                 {!this.props.trefleInfoPlant.common_name ? (<td>currently unavailable</td>) :
                 (<td style={{ textTransform: "capitalize" }}>{this.props.trefleInfoPlant.common_name}</td>)}
               </tr>
-              <tr scope="row">
+              <tr>
                 <td>Scientific name</td>
                 {!this.props.trefleInfoPlant.scientific_name ? (<td>currently unavailable</td>) :
                 (<td style={{ textTransform: "capitalize" }}>{this.props.trefleInfoPlant.scientific_name}</td>)}
               </tr>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>Family common name</td>
                 {!this.props.trefleInfoPlant.family_common_name ? (<td>currently unavailable</td>) :
                 (<td style={{ textTransform: "capitalize" }}> {this.props.trefleInfoPlant.family_common_name}</td>)}
@@ -126,47 +126,47 @@ export default class TrefleInfoPlantList extends Component {
           <h5 className="yellow-headline">Growth</h5>
           <table className="table table-responsive d-table table-borderless">
             <tbody>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>PH Maximum</td>
                 {!this.props.trefleInfoPlant.main_species.growth.ph_maximum ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.ph_maximum}</td>)}
               </tr>
               <tr>
-                <td scope="row">PH Minimum</td>
+                <td>PH Minimum</td>
                 {!this.props.trefleInfoPlant.main_species.growth.ph_minimum ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.ph_minimum}</td>)}
               </tr>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>Light**</td>
                 {!this.props.trefleInfoPlant.main_species.growth.light ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.light}</td>)}
               </tr>
-              <tr scope="row">
+              <tr>
                 <td>Bloom months</td>
                 {!this.props.trefleInfoPlant.main_species.growth.bloom_months ? (<td>currently unavailable</td>) :
                   (<td style={{ textTransform: "capitalize" }}>{blossomMonths.join(', ')}</td>)}
               </tr>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>Atmospheric humidity***</td>
                 {!this.props.trefleInfoPlant.main_species.growth.atmospheric_humidity ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.atmospheric_humidity}</td>)}
               </tr>
-              <tr scope="row">
+              <tr>
                 <td>Minimum temperature</td>
                 {!this.props.trefleInfoPlant.main_species.growth.minimum_temperature.deg_c ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.minimum_temperature.deg_c} °C</td>)}
               </tr>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>Maximum temperature</td>
                 {!this.props.trefleInfoPlant.main_species.growth.maximum_temperature.deg_c ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.maximum_temperature.deg_c} °C</td>)}
               </tr>
-              <tr scope="row">
+              <tr>
                 <td>Soil texture</td>
                 {!this.props.trefleInfoPlant.main_species.growth.soil_texture ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.soil_texture}</td>)}
               </tr>
-              <tr scope="row" className="tr-color">
+              <tr className="tr-color">
                 <td>Soil humidity</td>
                 {!this.props.trefleInfoPlant.main_species.growth.soil_humidity ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.soil_humidity}</td>)}

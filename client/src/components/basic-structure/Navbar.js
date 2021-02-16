@@ -42,7 +42,7 @@ const Navbar = (props) => {
     );
   } else {
     return (
-      <nav>
+      <nav className="my-3"> 
         <h3>Welcome to Plant Parenthood!</h3>
       </nav>
     );

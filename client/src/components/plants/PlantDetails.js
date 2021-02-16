@@ -89,6 +89,15 @@ export default class PlantDetails extends Component {
     });
   };
 
+  deletePlant = () => {
+    const plantId = this.props.match.params.id;
+    const plantSlug = this.props.match.params.slug;
+
+    axios.delete("/api/my-plants/" + plantId + "/" + plantSlug).then(() => {
+      this.props.history.push("/my-plants");
+    });
+  };
+
   render() {
     // if (this.state.loading) {
     //   return <p> Loading ... </p>;
@@ -111,6 +120,7 @@ export default class PlantDetails extends Component {
                 "btn btn-outline-dark btn-sm plant-details-btn no-radius-right" +
                 (this.state.customComponent && " active")
               }
+              type="button"
             >
               My Notes
             </button>
@@ -120,6 +130,7 @@ export default class PlantDetails extends Component {
                 "btn btn-outline-dark btn-sm plant-details-btn no-borders-btn no-radius-right no-radius-left" +
                 (this.state.apiComponent && " active")
               }
+              type="button"
             >
               About Plant
             </button>
@@ -129,6 +140,7 @@ export default class PlantDetails extends Component {
                 "btn btn-outline-dark btn-sm plant-details-btn no-radius-left" +
                 (this.state.reminderComponent && " active")
               }
+              type="button"
             >
               Reminders
             </button>
@@ -180,8 +192,9 @@ export default class PlantDetails extends Component {
               <button
                 onClick={() => this.setState({ displayEditForm: false })}
                 className="btn btn-outline-dark btn-sm"
+                type="button"
               >
-                Close Edit Plant
+                Close Form
               </button>
               <EditPlantDetails
                 customPlantFields={this.state.userPlant}
@@ -192,12 +205,22 @@ export default class PlantDetails extends Component {
           {this.state.userPlant &&
             this.state.customComponent &&
             !this.state.displayEditForm && (
+              <div className="buttons-container">
               <button
                 onClick={() => this.setState({ displayEditForm: true })}
                 className="btn btn-primary btn-sm"
+                type="button"
               >
-                Edit Your Plant
+                Edit Plant
               </button>
+
+              <button
+                onClick={() => this.deletePlant()}
+                className="btn btn-danger btn-sm"
+              >
+                Delete plant
+              </button>
+              </div>
             )}
 
           {this.state.userPlant &&

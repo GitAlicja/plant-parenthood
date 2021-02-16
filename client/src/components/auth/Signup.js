@@ -41,12 +41,12 @@ class Signup extends Component {
   };
   render() {
     return (
-      <div className="signup-photo">
+      <div className="signup-photo mb-4">
         <div className="form-container">
           <form onSubmit={this.handleFormSubmit}>
             <h2>Create an account</h2>
             <div className="form-group row">
-              <label className="col-sm-5 col-form-label" for="username">
+              <label className="col-sm-5 col-form-label" htmlFor="username">
                 Username:
               </label>
               <div className="col-sm-7">
@@ -60,7 +60,7 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-5 col-form-label" for="password">
+              <label className="col-sm-5 col-form-label" htmlFor="password">
                 Password:
               </label>
               <div className="col-sm-7">
@@ -74,7 +74,7 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-5 col-form-label" for="email">
+              <label className="col-sm-5 col-form-label" htmlFor="email">
                 Email:
               </label>
               <div className="col-sm-7">
@@ -90,22 +90,10 @@ class Signup extends Component {
 
             {/* Should go to user-profile edit page */}
             {/* <input type="submit" value="Signup" /> */}
-            <button onClick={this.handleFormSubmit} className="btn btn-primary">
-              Sign up{" "}
-            </button>
-            <br></br>
-            <br></br>
-
+            <button onClick={this.handleFormSubmit} className="btn btn-primary btn-sm mb-4 mt-2">Sign up</button>
             <div>
-              <p>
-                Already have an account? <br></br> <br></br>
-                <Link
-                  className="btn btn-outline-secondary btn-sm green-link mb-3"
-                  to={"/"}
-                >
-                  Login here
-                </Link>
-              </p>
+              <p>Already have an account?</p>
+              <Link className="btn btn-outline-secondary btn-sm green-link mb-3" to={"/"}>Login here</Link>
             </div>
           </form>
         </div>

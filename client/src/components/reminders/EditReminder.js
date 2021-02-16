@@ -136,7 +136,7 @@ class EditReminder extends React.Component {
             </div>
           </div>
 
-          <button onClick={this.submitHandler} className="btn btn-primary">
+          <button onClick={this.submitHandler} className="btn btn-primary btn-sm">
             Save Reminder
           </button>
         </form>

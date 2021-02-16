@@ -43,7 +43,7 @@ class EditUserProfile extends React.Component {
         <h3>Edit your profile</h3>
         <form>
           <div className="form-group row justify-content-center justify-content-md-start">
-            <label className="col-sm-5 col-form-label" for="username">
+            <label className="col-sm-5 col-form-label" htmlFor="username">
               Username:
             </label>
             <div className="col-sm-7">
@@ -57,7 +57,7 @@ class EditUserProfile extends React.Component {
             </div>
           </div>
           <div className="form-group row justify-content-center justify-content-md-start">
-            <label className="col-sm-5 col-form-label" for="email">
+            <label className="col-sm-5 col-form-label" htmlFor="email">
               Email:
             </label>
             <div className="col-sm-7">
@@ -71,7 +71,7 @@ class EditUserProfile extends React.Component {
             </div>
           </div>
           <div className="form-group row justify-content-center justify-content-md-start">
-            <label className="col-sm-5 col-form-label" for="profileImage">
+            <label className="col-sm-5 col-form-label" htmlFor="profileImage">
               Image:
             </label>
             <div className="col-sm-7">
@@ -84,7 +84,7 @@ class EditUserProfile extends React.Component {
             </div>
           </div>
 
-          <button onClick={this.submitHandler} className="btn btn-primary">
+          <button onClick={this.submitHandler} className="btn btn-primary btn-sm">
             Save Changes
           </button>
         </form>

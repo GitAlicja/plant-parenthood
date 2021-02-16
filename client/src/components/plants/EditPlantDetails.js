@@ -56,7 +56,7 @@ export default class EditPlantDetails extends Component {
         <h3>Edit your plant</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group row justify-content-center justify-content-md-start">
-            <label className="col-sm-5 col-form-label" for="plant-name">
+            <label className="col-sm-5 col-form-label" htmlFor="plant-name">
               Plant name:
             </label>
             <div className="col-sm-7">
@@ -70,7 +70,7 @@ export default class EditPlantDetails extends Component {
             </div>
           </div>
           <div className="form-group row justify-content-center justify-content-md-start">
-            <label className="col-sm-5 col-form-label" for="plant-name">
+            <label className="col-sm-5 col-form-label" htmlFor="plant-name">
               Your notes:
             </label>
             <div className="col-sm-7">
@@ -86,7 +86,7 @@ export default class EditPlantDetails extends Component {
           </div>
 
           <div className="form-group row justify-content-center justify-content-md-start">
-            <label className="col-sm-5 col-form-label" for="plantImg">
+            <label className="col-sm-5 col-form-label" htmlFor="plantImg">
               Image:
             </label>
             <div className="col-sm-7">

@@ -38,93 +38,29 @@ class UserProfile extends React.Component {
             <span className="sr-only">Loading...</span>
           </div>
         )}
-        <div className="single-reminder-innerbox shadow p-3 mb-4 bg-body rounded">
-          {this.state.user && (
-            <div>
-              {/* default image can be changed in the edit form */}
-              <img
-                src={this.state.user.profileImg || "/images/user.png"}
-                alt="user profile"
-                className="user-profile-image"
-              />
-              {/* <h4>Welcome, {this.state.user.username}</h4> */}
-              <p>Your username: {this.state.user.username} </p>
-              <p>Your email: {this.state.user.email}</p>
-              <br />
-              <div className="btn-group">
-                <Link
-                  className="btn btn-outline-secondary btn-sm green-link mb-3"
-                  to="/my-plants"
-                >
-                  Your Plants Collection
-                </Link>
-                <br />
-                <Link
-                  className="btn btn-outline-secondary btn-sm green-link mb-3"
-                  to="/search"
-                >
-                  Search Plants
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
 
         {this.state.user && (
           <div className="single-user-innerbox shadow p-3 mb-4 bg-body rounded">
             {/* default image can be changed in the edit form */}
-            <img
-              src={this.state.user.profileImg || "/images/user.png"}
-              alt="user profile"
-              className="user-profile-image"
-            />
+            <img src={this.state.user.profileImg || "/images/user.png"} alt="user profile" className="user-profile-image mb-3" />
             <h5>
-              <span className="yellow-headline">Username:</span>{" "}
-              {this.state.user.username}
-            </h5>
-            <h6>
-              <span className="green-headline">Email:</span>{" "}
-              {this.state.user.email}
-            </h6>
+              <span className="yellow-headline">Username:</span> {this.state.user.username}</h5>
+            <h6><span className="yellow-headline">Email:</span> {this.state.user.email}</h6>
           </div>
         )}
-
         <br />
         <div>
-          <Link
-            to="/my-plants"
-            className="btn btn-outline-secondary btn-sm green-link mb-4"
-          >
-            Plants Collection
-          </Link>
-          <Link
-            to="/search"
-            className="btn btn-outline-secondary btn-sm green-link mb-4"
-          >
-            Search Plants
-          </Link>
+          <Link to="/my-plants" className="btn btn-outline-secondary btn-sm green-link mb-4 mx-2">Your Collection</Link>
+          <Link to="/search" className="btn btn-outline-secondary btn-sm green-link mb-4 mx-2">Search Plants</Link>
         </div>
         {this.state.user && this.state.displayEditForm ? (
           <div>
-            <button
-              onClick={() => this.setState({ displayEditForm: false })}
-              className="btn btn-outline-dark btn-sm"
-            >
-              Close
-            </button>
-            <EditUserProfile
-              theUser={this.state.user}
-              reloadHandler={this.reloadHandler}
-            />
+            <button onClick={() => this.setState({ displayEditForm: false })} type="button" className="btn btn-outline-dark btn-sm">Close Form</button>
+            <EditUserProfile theUser={this.state.user} reloadHandler={this.reloadHandler} />
           </div>
         ) : (
-          <button
-            onClick={() => this.setState({ displayEditForm: true })}
-            className="btn btn-primary btn-sm"
-          >
-            Edit Profile
-          </button>
-        )}
+            <button onClick={() => this.setState({ displayEditForm: true })} type="button" className="btn btn-primary btn-sm">Edit Profile</button>
+          )}
       </div>
     );
   }

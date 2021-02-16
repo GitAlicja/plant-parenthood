@@ -23,13 +23,13 @@ class Login extends Component {
   };
   render() {
     return (
-      <div className="signup-photo">
+      <div className="signup-photo mb-4">
         <div className="form-container">
           <form onSubmit={this.handleFormSubmit}>
             <h2>Login</h2>
 
             <div className="form-group row">
-              <label className="col-sm-5 col-form-label" for="username">
+              <label className="col-sm-5 col-form-label" htmlFor="username">
                 Username:
               </label>
               <div className="col-sm-7">
@@ -43,7 +43,7 @@ class Login extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-5 col-form-label" for="password">
+              <label className="col-sm-5 col-form-label" htmlFor="password">
                 Password:
               </label>
               <div className="col-sm-7">
@@ -58,23 +58,9 @@ class Login extends Component {
             </div>
             {/* <input type="submit" value="Login" />
             <br></br> */}
-            <button onClick={this.submitHandler} className="btn btn-primary">
-              Login
-            </button>
-            <br></br>
-            <br></br>
-
-            <p>
-              Don't have account? <br></br>
-              <br></br>
-              <Link
-                className="btn btn-outline-secondary btn-sm green-link mb-3"
-                to={"/signup"}
-              >
-                {" "}
-                Signup
-              </Link>
-            </p>
+            <button onClick={this.submitHandler} className="btn btn-primary btn-sm mb-4 mt-2">Login</button>
+            <p>Don't have account?</p>
+            <Link className="btn btn-outline-secondary btn-sm green-link mb-3" to={"/signup"}>Signup</Link>
           </form>
         </div>
       </div>
