@@ -52,7 +52,7 @@ h5 {
   padding-left: 16px;
   padding-right: 16px;
   margin-bottom: 30px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   color: #3c403d;
 }
 
@@ -69,7 +69,7 @@ h5 {
 .list-item {
   width: 100%;
   background-color: #ffffff;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border: 1px solid #ced4da;
 }
 
@@ -86,11 +86,11 @@ h5 {
   margin-right: 20px;
 }
 
-.list-item-img-container>img {
+.list-item-img-container > img {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .list-item-names {
@@ -111,7 +111,7 @@ h5 {
 } */
 
 .list-item-paragraph {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #a3bcb6;
 }
 
@@ -125,7 +125,10 @@ h5 {
 }
 
 .user-profile-image {
-  height: 100px;
+  height: 200px;
+  width: auto;
+  margin: 10px;
+  border-radius: 50%;
 }
 
 .home-main-container {
@@ -161,18 +164,18 @@ hr {
 a:hover,
 a:visited {
   text-decoration: none;
-  color: #39603D;
+  color: #39603d;
 }
 
 .green-link {
-  color: #39603D;
+  color: #39603d;
 }
 
 .nav-container {
   width: 84%;
 }
 
-footer>p>img {
+footer > p > img {
   height: 24px;
 }
 
@@ -220,14 +223,14 @@ footer>p>img {
 }
 
 .btn-outline-secondary {
-  border-color: #39603D;
+  border-color: #39603d;
 }
 
 .btn-outline-secondary:hover {
-  background-color: #39603D;
+  background-color: #39603d;
 }
 
-.buttons-container>button {
+.buttons-container > button {
   margin: 10px;
 }
 
@@ -248,7 +251,6 @@ footer>p>img {
   background-color: white;
   border-radius: 5px;
 }
-
 .signup-photo {
   display: flex;
   justify-content: center;
@@ -260,12 +262,37 @@ footer>p>img {
   width: 100%;
 }
 
+.mdb-select {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  color: rgb(118, 118, 118);
+}
+
+.reminder-container {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
 .single-plant-container {
   flex-grow: 1;
   width: 80%;
 }
 
-.single-plant-innerbox, .trefle-plant-info-innerbox {
+.single-plant-innerbox,
+.trefle-plant-info-innerbox {
   width: 100%;
   background-color: #ffffff;
   border: 1px solid #ced4da;
@@ -279,9 +306,9 @@ footer>p>img {
   width: 100%;
 }
 
-.notes-paragraph>p {
+.notes-paragraph > p {
   border: 1px solid #ced4da;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   text-align: left;
 }
 
@@ -331,10 +358,12 @@ table {
 
 .trefle-growth-notes > p {
   text-align: left;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
-.trefle-distribution, .trefle-names, .trefle-plant-growth {
+.trefle-distribution,
+.trefle-names,
+.trefle-plant-growth {
   width: 84%;
 }
 
@@ -343,7 +372,7 @@ table {
 }
 
 .img-fluid {
-  border-radius: .25rem !important;
+  border-radius: 0.25rem !important;
 }
 
 .spinner-border {

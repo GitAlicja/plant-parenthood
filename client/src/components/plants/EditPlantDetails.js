@@ -55,11 +55,11 @@ export default class EditPlantDetails extends Component {
       <div className="plant-edit-container">
         <h3>Edit your plant</h3>
         <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="plant-name">
-              Plant name
+          <div className="form-group row justify-content-center justify-content-md-start">
+            <label className="col-sm-5 col-form-label" for="plant-name">
+              Plant name:
             </label>
-            <div className="col-7">
+            <div className="col-sm-7">
               <input
                 type="text"
                 name="name"
@@ -69,11 +69,11 @@ export default class EditPlantDetails extends Component {
               ></input>
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="plant-name">
-              Your notes
+          <div className="form-group row justify-content-center justify-content-md-start">
+            <label className="col-sm-5 col-form-label" for="plant-name">
+              Your notes:
             </label>
-            <div className="col-sm-10">
+            <div className="col-sm-7">
               <textarea
                 name="notes"
                 placeholder="Notes"
@@ -85,11 +85,11 @@ export default class EditPlantDetails extends Component {
             </div>
           </div>
 
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="plantImg">
-              Image
+          <div className="form-group row justify-content-center justify-content-md-start">
+            <label className="col-sm-5 col-form-label" for="plantImg">
+              Image:
             </label>
-            <div className="col-sm-10">
+            <div className="col-sm-7">
               <input
                 type="file"
                 name="plantImg"

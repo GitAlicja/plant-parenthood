@@ -105,21 +105,47 @@ export default class PlantDetails extends Component {
         {!this.state.loading && (
           <div className="buttons-group mb-3">
             {/* shows one tab and hides two others according to above handlers*/}
-            <button onClick={this.showCustomComponent} className={"btn btn-outline-dark btn-sm plant-details-btn no-radius-right" + (this.state.customComponent && " active")} >My Notes</button>
-            <button onClick={this.showApiComponent} className={"btn btn-outline-dark btn-sm plant-details-btn no-borders-btn no-radius-right no-radius-left" + (this.state.apiComponent && " active")} >About Plant</button>
-            <button onClick={this.showReminderComponent} className={"btn btn-outline-dark btn-sm plant-details-btn no-radius-left" + (this.state.reminderComponent && " active")} >Reminders</button>
+            <button
+              onClick={this.showCustomComponent}
+              className={
+                "btn btn-outline-dark btn-sm plant-details-btn no-radius-right" +
+                (this.state.customComponent && " active")
+              }
+            >
+              My Notes
+            </button>
+            <button
+              onClick={this.showApiComponent}
+              className={
+                "btn btn-outline-dark btn-sm plant-details-btn no-borders-btn no-radius-right no-radius-left" +
+                (this.state.apiComponent && " active")
+              }
+            >
+              About Plant
+            </button>
+            <button
+              onClick={this.showReminderComponent}
+              className={
+                "btn btn-outline-dark btn-sm plant-details-btn no-radius-left" +
+                (this.state.reminderComponent && " active")
+              }
+            >
+              Reminders
+            </button>
           </div>
         )}
 
         {this.state.customComponent && (
           <PlantCustomFields dataFromUser={this.state.userPlant} />
         )}
+
         {this.state.apiComponent && (
           <PlantApiDetails dataFromApi={this.state.apiPlant} />
         )}
         {this.state.reminderComponent && (
           <PlantListOfReminders
-            plantReminders={this.state.userPlant.reminders} />
+            plantReminders={this.state.userPlant.reminders}
+          />
         )}
 
         {/* <div>
@@ -142,21 +168,48 @@ export default class PlantDetails extends Component {
           )}
         </div> */}
         <br />
-        <Link to="/my-plants" className="btn btn-outline-secondary btn-sm green-link mb-4">Back to Collection</Link>
+        <Link
+          to="/my-plants"
+          className="btn btn-outline-secondary btn-sm green-link mb-4"
+        >
+          Back to Collection
+        </Link>
         <div>
           {this.state.userPlant && this.state.displayEditForm && (
             <div>
-              <button onClick={() => this.setState({ displayEditForm: false })} className="btn btn-outline-dark btn-sm">
+              <button
+                onClick={() => this.setState({ displayEditForm: false })}
+                className="btn btn-outline-dark btn-sm"
+              >
                 Close Edit Plant
               </button>
-              <EditPlantDetails customPlantFields={this.state.userPlant} reloadHandler={this.reloadHandler} />
+              <EditPlantDetails
+                customPlantFields={this.state.userPlant}
+                reloadHandler={this.reloadHandler}
+              />
             </div>
           )}
-          {this.state.userPlant && this.state.customComponent && !this.state.displayEditForm &&
-            (<button onClick={() => this.setState({ displayEditForm: true })} className="btn btn-primary btn-sm">Edit Your Plant</button>)}
+          {this.state.userPlant &&
+            this.state.customComponent &&
+            !this.state.displayEditForm && (
+              <button
+                onClick={() => this.setState({ displayEditForm: true })}
+                className="btn btn-primary btn-sm"
+              >
+                Edit Your Plant
+              </button>
+            )}
 
-          {this.state.userPlant && this.state.reminderComponent && !this.state.displayEditForm &&
-            (<Link to={`/add-reminder/${this.state.userPlant._id}`} className="btn btn-primary btn-sm white-text">Add New Reminder</Link>)}
+          {this.state.userPlant &&
+            this.state.reminderComponent &&
+            !this.state.displayEditForm && (
+              <Link
+                to={`/add-reminder/${this.state.userPlant._id}`}
+                className="btn btn-primary btn-sm white-text"
+              >
+                Add New Reminder
+              </Link>
+            )}
         </div>
       </div>
     );

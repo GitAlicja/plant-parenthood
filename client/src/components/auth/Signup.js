@@ -46,14 +46,13 @@ class Signup extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <h2>Create an account</h2>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="username">
+              <label className="col-sm-5 col-form-label" for="username">
                 Username:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="text"
                   name="username"
-                  placeholder="Enter Username"
                   value={this.state.username}
                   onChange={(e) => this.handleChange(e)}
                   className="form-control"
@@ -61,14 +60,13 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="password">
+              <label className="col-sm-5 col-form-label" for="password">
                 Password:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="password"
                   name="password"
-                  placeholder="Enter Password"
                   value={this.state.password}
                   onChange={(e) => this.handleChange(e)}
                   className="form-control"
@@ -76,14 +74,13 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="email">
+              <label className="col-sm-5 col-form-label" for="email">
                 Email:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter email"
                   value={this.state.email}
                   onChange={(e) => this.handleChange(e)}
                   className="form-control"
@@ -92,16 +89,22 @@ class Signup extends Component {
             </div>
 
             {/* Should go to user-profile edit page */}
-            <input type="submit" value="Signup" />
-            {/* <button onClick={this.handleFormSubmit} className="btn btn-primary">
+            {/* <input type="submit" value="Signup" /> */}
+            <button onClick={this.handleFormSubmit} className="btn btn-primary">
               Sign up{" "}
-            </button> */}
+            </button>
+            <br></br>
             <br></br>
 
             <div>
               <p>
-                Already have an account? <br></br>
-                <Link to={"/"}>Login here</Link>
+                Already have an account? <br></br> <br></br>
+                <Link
+                  className="btn btn-outline-secondary btn-sm green-link mb-3"
+                  to={"/"}
+                >
+                  Login here
+                </Link>
               </p>
             </div>
           </form>

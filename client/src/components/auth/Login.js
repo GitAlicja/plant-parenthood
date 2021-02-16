@@ -29,10 +29,10 @@ class Login extends Component {
             <h2>Login</h2>
 
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="username">
+              <label className="col-sm-5 col-form-label" for="username">
                 Username:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="text"
                   name="username"
@@ -43,10 +43,10 @@ class Login extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label" for="password">
+              <label className="col-sm-5 col-form-label" for="password">
                 Password:
               </label>
-              <div className="col-7">
+              <div className="col-sm-7">
                 <input
                   type="password"
                   name="password"
@@ -56,12 +56,24 @@ class Login extends Component {
                 />
               </div>
             </div>
-            <input type="submit" value="Login" />
+            {/* <input type="submit" value="Login" />
+            <br></br> */}
+            <button onClick={this.submitHandler} className="btn btn-primary">
+              Login
+            </button>
+            <br></br>
             <br></br>
 
             <p>
               Don't have account? <br></br>
-              <Link to={"/signup"}> Signup</Link>
+              <br></br>
+              <Link
+                className="btn btn-outline-secondary btn-sm green-link mb-3"
+                to={"/signup"}
+              >
+                {" "}
+                Signup
+              </Link>
             </p>
           </form>
         </div>
