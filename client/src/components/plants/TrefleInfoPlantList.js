@@ -47,7 +47,9 @@ export default class TrefleInfoPlantList extends Component {
       <div className="trefle-plant-info-innerbox shadow p-4 mb-4 bg-body rounded">
         <h3 className="green-headline mb-2">General Informations</h3>
         <div>
+        {this.props.trefleInfoPlant.image_url ? (
           <img src={this.props.trefleInfoPlant.image_url} alt="selected plant" className="img-fluid" />
+        ) : ""}
         </div>
         <div className="trefle-names mt-3">
         <h5 className="yellow-headline">Names</h5>
@@ -90,7 +92,6 @@ export default class TrefleInfoPlantList extends Component {
         <div className="trefle-plant-gallery">
           <h5 className="yellow-headline mt-3">Gallery</h5>
           {/* hide unavailable images */}
-          <p> Flower Images: </p>
           {hasFlowerImages &&
             this.props.trefleInfoPlant.main_species.images.flower.map(
               (flower) => {
@@ -136,7 +137,7 @@ export default class TrefleInfoPlantList extends Component {
                   (<td>{this.props.trefleInfoPlant.main_species.growth.ph_minimum}</td>)}
               </tr>
               <tr scope="row" className="tr-color">
-                <td>Light*</td>
+                <td>Light**</td>
                 {!this.props.trefleInfoPlant.main_species.growth.light ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.light}</td>)}
               </tr>
@@ -146,7 +147,7 @@ export default class TrefleInfoPlantList extends Component {
                   (<td style={{ textTransform: "capitalize" }}>{blossomMonths.join(', ')}</td>)}
               </tr>
               <tr scope="row" className="tr-color">
-                <td>Atmospheric humidity**</td>
+                <td>Atmospheric humidity***</td>
                 {!this.props.trefleInfoPlant.main_species.growth.atmospheric_humidity ? (<td>currently unavailable</td>) :
                   (<td>{this.props.trefleInfoPlant.main_species.growth.atmospheric_humidity}</td>)}
               </tr>

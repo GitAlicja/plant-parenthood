@@ -149,10 +149,7 @@ export default class PlantDetails extends Component {
               <button onClick={() => this.setState({ displayEditForm: false })} className="btn btn-outline-dark btn-sm">
                 Close Edit Plant
               </button>
-              <EditPlantDetails
-                customPlantFields={this.state.userPlant}
-                reloadHandler={this.reloadHandler}
-              />
+              <EditPlantDetails customPlantFields={this.state.userPlant} reloadHandler={this.reloadHandler} />
             </div>
           )}
           {this.state.userPlant && this.state.customComponent && !this.state.displayEditForm &&

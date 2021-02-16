@@ -353,3 +353,25 @@ table {
 .white-text {
   color: #ffffff !important;
 }
+
+.single-user-container {
+  flex-grow: 1;
+  width: 80%;
+}
+
+.single-user-innerbox {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+}

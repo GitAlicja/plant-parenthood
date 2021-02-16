@@ -10,15 +10,16 @@ const Plant = require("../models/plant-model");
 router.get("/search", (req, res, next) => {
   const searchTerm = req.query.searchterm;
   console.log("SERACHTERM", searchTerm);
-  //   res.redirect("/");
-  // } else {
 
-  //API Search example - https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut
+  let pageNum = parseInt(req.query.page); // parseInt() function parses a string argument and returns an integer
+  if (isNaN(pageNum) || pageNum < 1) { // isNaN() function determines whether a value is NaN or not
+    pageNum = 1;
+  }
+
+  //API Search example - https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&page=1&q=coconut
 
   const apiURL =
-    "https://trefle.io/api/v1/plants/search?token=" +
-    process.env.TREFLE_ACCESS_TOKEN +
-    `&q=${searchTerm}`;
+    "https://trefle.io/api/v1/plants/search?token=" + process.env.TREFLE_ACCESS_TOKEN + `&page=${pageNum}` + `&q=${searchTerm}`;
 
   axios.get(apiURL).then((resp) => {
     console.log(resp.data);
@@ -36,9 +37,9 @@ router.get("/search/detail/:slug", (req, res, next) => {
       axios
         .get(
           "https://trefle.io/api/v1/plants/" +
-            encodeURIComponent(req.params.slug) +
-            "?token=" +
-            process.env.TREFLE_ACCESS_TOKEN
+          encodeURIComponent(req.params.slug) +
+          "?token=" +
+          process.env.TREFLE_ACCESS_TOKEN
         )
         .then((resp) => {
           // information from trefle

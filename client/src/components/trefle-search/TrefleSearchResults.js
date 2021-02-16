@@ -11,7 +11,8 @@ class TrefleSearchResults extends React.Component {
     loading: true,
     searchTerm: "",
     timeoutID: 0,
-    numOfResults: "", 
+    numOfResults: 0,
+    pageNum: 1,
     displayIcon: true
   };
 
@@ -24,14 +25,15 @@ class TrefleSearchResults extends React.Component {
       this.setState({
         results: [],
         loading: false,
-        numOfResults: "",
+        numOfResults: 0,
+        pageNum: 1,
         displayIcon: true
       });
       return;
     }
 
     axios
-      .get("/api/search", { params: { searchterm: this.state.searchTerm } })
+      .get("/api/search", { params: { searchterm: this.state.searchTerm, page: this.state.pageNum } })
       .then(resp => {
         this.setState({
           results: resp.data.data,
@@ -45,7 +47,7 @@ class TrefleSearchResults extends React.Component {
 
   editSearchTerm = (event) => {
     const newSearchTerm = event.currentTarget.value;
-    this.setState({ searchTerm: newSearchTerm, loading: true }, () => {
+    this.setState({ searchTerm: newSearchTerm, loading: true, pageNum: 1 }, () => {
 
       clearTimeout(this.state.timeoutID);
       const newTimeoutID = window.setTimeout(this.doSearch, 300);
@@ -54,8 +56,27 @@ class TrefleSearchResults extends React.Component {
     });
   }
 
+  countPagesDown = () => {
+    this.setState({ pageNum: this.state.pageNum - 1, loading: true }, () => {
+      clearTimeout(this.state.timeoutID);
+      this.doSearch();
+    })
+  }
+
+  countPagesUp = () => {
+    this.setState({ pageNum: this.state.pageNum + 1, loading: true }, () => {
+      clearTimeout(this.state.timeoutID);
+      this.doSearch();
+    })
+  }
+
   render() {
-    console.log(this.state.results)
+    // console.log(this.state.results);
+
+    const totalResults = parseInt(this.state.numOfResults);
+    const pageSize = 20; // number of results per page
+    const numOfPages = Math.ceil(parseInt(this.state.numOfResults) / pageSize);
+
     return (
       <div className="list-main-container">
         <h2>Find Your Plants</h2>
@@ -100,7 +121,16 @@ class TrefleSearchResults extends React.Component {
             </div>
           );
         })}
-        {this.state.numOfResults ? (<p>Total: {this.state.numOfResults}</p>) : ""}
+        {totalResults ? (<h6 className="mb-4 pt-2">Results: {totalResults} | Pages: {numOfPages}</h6>) : ""}
+
+        {this.state.results.length > 0 ? (
+          <div className="pagination-container mb-4">
+            <button onClick={this.countPagesDown} type="button" className="btn btn-primary btn-sm" disabled={this.state.pageNum === 1} >&#60;</button>
+            <div className="mx-4"><h6>{this.state.pageNum}</h6></div>
+            <button onClick={this.countPagesUp} type="button" className="btn btn-primary btn-sm" disabled={this.state.pageNum === numOfPages} >&#62;</button>
+          </div>
+        ) : ""}
+
       </div>
     );
   }
