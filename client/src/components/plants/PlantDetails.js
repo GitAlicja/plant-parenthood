@@ -101,6 +101,7 @@ export default class PlantDetails extends Component {
         {this.state.customComponent && (
           <PlantCustomFields dataFromUser={this.state.userPlant} />
         )}
+
         {this.state.apiComponent && (
           <PlantApiDetails dataFromApi={this.state.apiPlant} />
         )}
@@ -133,7 +134,13 @@ export default class PlantDetails extends Component {
         <div>
           {this.state.userPlant && this.state.displayEditForm ? (
             <div>
-              <button onClick={() => this.setState({ displayEditForm: false })}>
+              <button
+                onClick={() =>
+                  this.setState({
+                    displayEditForm: false,
+                  })
+                }
+              >
                 Close Edit Plant
               </button>
               <EditPlantDetails
@@ -142,7 +149,13 @@ export default class PlantDetails extends Component {
               />
             </div>
           ) : (
-            <button onClick={() => this.setState({ displayEditForm: true })}>
+            <button
+              onClick={() =>
+                this.setState({
+                  displayEditForm: true,
+                })
+              }
+            >
               Edit Your Plant
             </button>
           )}

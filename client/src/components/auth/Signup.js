@@ -53,7 +53,6 @@ class Signup extends Component {
                 <input
                   type="text"
                   name="username"
-                  placeholder="Enter Username"
                   value={this.state.username}
                   onChange={(e) => this.handleChange(e)}
                   className="form-control"
@@ -68,7 +67,6 @@ class Signup extends Component {
                 <input
                   type="password"
                   name="password"
-                  placeholder="Enter Password"
                   value={this.state.password}
                   onChange={(e) => this.handleChange(e)}
                   className="form-control"
@@ -83,7 +81,6 @@ class Signup extends Component {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter email"
                   value={this.state.email}
                   onChange={(e) => this.handleChange(e)}
                   className="form-control"
@@ -92,16 +89,22 @@ class Signup extends Component {
             </div>
 
             {/* Should go to user-profile edit page */}
-            <input type="submit" value="Signup" />
-            {/* <button onClick={this.handleFormSubmit} className="btn btn-primary">
+            {/* <input type="submit" value="Signup" /> */}
+            <button onClick={this.handleFormSubmit} className="btn btn-primary">
               Sign up{" "}
-            </button> */}
+            </button>
+            <br></br>
             <br></br>
 
             <div>
               <p>
-                Already have an account? <br></br>
-                <Link to={"/"}>Login here</Link>
+                Already have an account? <br></br> <br></br>
+                <Link
+                  className="btn btn-outline-secondary btn-sm green-link mb-3"
+                  to={"/"}
+                >
+                  Login here
+                </Link>
               </p>
             </div>
           </form>

@@ -42,11 +42,11 @@ class EditUserProfile extends React.Component {
       <div className="plant-edit-container">
         <h3>Edit your profile</h3>
         <form>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="username">
-              Username
+          <div className="form-group row justify-content-center justify-content-md-start">
+            <label className="col-sm-5 col-form-label" for="username">
+              Username:
             </label>
-            <div className="col-7">
+            <div className="col-sm-7">
               <input
                 type="text"
                 name="username"
@@ -56,11 +56,11 @@ class EditUserProfile extends React.Component {
               />
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="email">
-              Email
+          <div className="form-group row justify-content-center justify-content-md-start">
+            <label className="col-sm-5 col-form-label" for="email">
+              Email:
             </label>
-            <div className="col-7">
+            <div className="col-sm-7">
               <input
                 type="text"
                 name="email"
@@ -70,11 +70,11 @@ class EditUserProfile extends React.Component {
               />
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="profileImage">
-              Image
+          <div className="form-group row justify-content-center justify-content-md-start">
+            <label className="col-sm-5 col-form-label" for="profileImage">
+              Image:
             </label>
-            <div className="col-sm-5">
+            <div className="col-sm-7">
               <input
                 type="file"
                 name="profileImg"

@@ -56,12 +56,24 @@ class Login extends Component {
                 />
               </div>
             </div>
-            <input type="submit" value="Login" />
+            {/* <input type="submit" value="Login" />
+            <br></br> */}
+            <button onClick={this.submitHandler} className="btn btn-primary">
+              Login
+            </button>
+            <br></br>
             <br></br>
 
             <p>
               Don't have account? <br></br>
-              <Link to={"/signup"}> Signup</Link>
+              <br></br>
+              <Link
+                className="btn btn-outline-secondary btn-sm green-link mb-3"
+                to={"/signup"}
+              >
+                {" "}
+                Signup
+              </Link>
             </p>
           </form>
         </div>

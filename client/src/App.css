@@ -51,7 +51,7 @@ h4 {
   padding-left: 16px;
   padding-right: 16px;
   margin-bottom: 30px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   color: #3c403d;
 }
 
@@ -111,7 +111,10 @@ h4 {
 }
 
 .user-profile-image {
-  height: 100px;
+  height: 200px;
+  width: auto;
+  margin: 10px;
+  border-radius: 50%;
 }
 
 .home-main-container {
@@ -238,4 +241,35 @@ footer > p > img {
   background-size: cover;
   border-radius: 5px;
   width: 100%;
+}
+
+.mdb-select {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  color: rgb(118, 118, 118);
+}
+
+.reminder-container {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.userprofile-container {
+  flex-grow: 1;
+  width: 80%;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
