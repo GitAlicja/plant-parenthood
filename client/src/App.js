@@ -90,7 +90,7 @@ class App extends React.Component {
           </Route>
 
           <Route exact path="/user-profile">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <UserProfile />}
+            {!this.state.loggedInUser ? <Redirect to="/" /> : <UserProfile updateTheUser={this.updateTheUser} />}
           </Route>
 
         </Switch>

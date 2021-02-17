@@ -3,19 +3,33 @@ import { login } from "../../api";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
-  state = { username: "", password: "" };
+  state = { username: "", password: "", error: null };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
 
+    // to reset when the form was sent again
+    this.setState({ error: null });
+    
     login(username, password)
       .then((response) => {
         this.setState({ username: "", password: "" });
         this.props.updateUser(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 400 && error.response.data.message) {
+          this.setState({
+            error: error.response.data.message
+          });
+        } else if (error.response.status === 500) {
+          this.setState({
+            error: "Something went wrong. Try again!"
+          });
+        }
+        console.error(error);
+      });
   };
   handleChange = (event) => {
     const { name, value } = event.target;

@@ -9,6 +9,7 @@ class Signup extends Component {
     username: "",
     password: "",
     email: "",
+    error: null
   };
 
   handleFormSubmit = (event) => {
@@ -23,6 +24,9 @@ class Signup extends Component {
     //   });
     // };
 
+    // to reset when the form was sent again
+    this.setState({ error: null });
+
     signup(username, password, email)
       .then((response) => {
         this.setState({
@@ -32,7 +36,18 @@ class Signup extends Component {
         });
         this.props.updateUser(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 400 && error.response.data.message) {
+          this.setState({
+            error: error.response.data.message
+          });
+        } else if (error.response.status === 500) {
+          this.setState({
+            error: "Something went wrong. Try again!"
+          });
+        }
+        console.error(error);
+      });
   };
 
   handleChange = (event) => {
@@ -42,9 +57,11 @@ class Signup extends Component {
   render() {
     return (
       <div className="signup-photo mb-4">
+      {this.state.error && (<div className="alert alert-danger">{this.state.error}</div>)}
         <div className="form-container">
           <form onSubmit={this.handleFormSubmit}>
             <h2>Create an account</h2>
+            
             <div className="form-group row">
               <label className="col-sm-5 col-form-label" htmlFor="username">
                 Username:

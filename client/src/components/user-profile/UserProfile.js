@@ -18,6 +18,8 @@ class UserProfile extends React.Component {
         user: resp.data,
         loading: false,
       });
+      // update username in the navbar
+      this.props.updateTheUser(resp.data);
     });
   }
 
@@ -56,6 +58,8 @@ class UserProfile extends React.Component {
         {this.state.user && this.state.displayEditForm ? (
           <div>
             <button onClick={() => this.setState({ displayEditForm: false })} type="button" className="btn btn-outline-dark btn-sm">Close Form</button>
+            {/* reloadHandler={this.reloadHandler} 
+            lifting state up by passing a handler function to the child component as a props */}
             <EditUserProfile theUser={this.state.user} reloadHandler={this.reloadHandler} />
           </div>
         ) : (

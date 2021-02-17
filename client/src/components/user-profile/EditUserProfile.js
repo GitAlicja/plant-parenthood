@@ -22,6 +22,7 @@ class EditUserProfile extends React.Component {
     event.preventDefault();
 
     axios.put("/api/user-profile", { ...this.state }).then((resp) => {
+      // lifting state up by passing a handler function to the child component as a props
       this.props.reloadHandler();
     });
   };

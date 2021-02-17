@@ -35,14 +35,14 @@ const Navbar = (props) => {
           </div>
         </nav>
         <div className="mt-3">
-          <h4>Hello, {props.userInSession.username} !</h4>
+          <h4>Green Tumbs Up, {props.userInSession.username} !</h4>
           <hr />
         </div>
       </div>
     );
   } else {
     return (
-      <nav className="my-3"> 
+      <nav className="mt-4 mb-2"> 
         <h3>Welcome to Plant Parenthood!</h3>
       </nav>
     );
