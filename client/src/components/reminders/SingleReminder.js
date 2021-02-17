@@ -71,7 +71,7 @@ class SingleReminder extends React.Component {
           {/* if data is not there you would try to show for example this.state.reminder.null instead of this.state.reminder.reminderDate and example this.state.reminder.null will always cause errors */}
           {this.state.reminder && (
             <div>
-            <div className="single-reminder-img-container my-3"><img src={typeOfCareIcon} alt="reminder icon" /></div>
+              <div className="single-reminder-img-container my-3"><img src={typeOfCareIcon} alt="reminder icon" /></div>
               <div>
                 <h4 className="green-headline">
                   {this.state.reminder.typeOfCare} {this.state.reminder.plant.name}
@@ -126,22 +126,22 @@ class SingleReminder extends React.Component {
               />
             </div>
           ) : (
-            <div className="buttons-container">
-              <button
-                onClick={() => this.setState({ displayEditForm: true })}
-                className="btn btn-primary btn-sm"
-                type="button"
-              >
-                Edit Reminder
+              <div className="buttons-container">
+                <button
+                  onClick={() => this.setState({ displayEditForm: true })}
+                  className="btn btn-primary btn-sm"
+                  type="button"
+                >
+                  Edit Reminder
               </button>
-              <button
-                onClick={() => this.deleteReminder()}
-                className="btn btn-danger btn-sm"
-              >
-                Delete reminder
+                <button
+                  onClick={() => this.deleteReminder()}
+                  className="btn btn-danger btn-sm"
+                >
+                  Delete reminder
               </button>
-            </div>
-          )}
+              </div>
+            )}
         </div>
       </div>
     );

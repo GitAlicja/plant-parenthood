@@ -245,11 +245,11 @@ footer > p > img {
   flex-wrap: wrap;
   justify-content: center;
   box-sizing: border-box;
-  height: 450px;
+  height: 430px;
   margin: 20px;
   padding: 16px;
   background-color: white;
-  border-radius: 5px;
+  border-radius: .25rem;
 }
 .signup-photo {
   display: flex;
@@ -259,7 +259,7 @@ footer > p > img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 5px;
+  border-radius: .25rem;
   width: 100%;
   flex-grow: 1;
 }
