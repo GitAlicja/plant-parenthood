@@ -25,50 +25,43 @@ export default class TrefleInfoPlantList extends Component {
       })
     }
 
-    const hasDistributionArray =
-      this.props.trefleInfoPlant.main_species.distribution.native &&
-      this.props.trefleInfoPlant.main_species.distribution.native.length > 0;
-
-    const distributionNativeArray = this.props.trefleInfoPlant.main_species
-      .distribution.native;
-
-    //chooses 2 random distribution native countries from the array --> maybe show all countries for consistency??
     const randomCountryArray = [];
-    for (let i = 0; i < 3; i++) {
+    const distributionNativeArray = this.props.trefleInfoPlant.main_species.distribution.native || [];
+
+    for (let i = 0; i < 3 && i < distributionNativeArray.length; i++) {
       const randomCountry =
         distributionNativeArray[
         Math.floor(Math.random() * distributionNativeArray.length)
         ];
       randomCountryArray.push(randomCountry);
     }
-    // console.log("randomCountryArray!!!", randomCountryArray);
-
+    
     return (
       <div className="trefle-plant-info-innerbox shadow p-4 mb-4 bg-body rounded">
         <h3 className="green-headline mb-2">General Informations</h3>
         <div>
-        {this.props.trefleInfoPlant.image_url ? (
-          <img src={this.props.trefleInfoPlant.image_url} alt="selected plant" className="img-fluid" />
-        ) : ""}
+          {this.props.trefleInfoPlant.image_url ? (
+            <img src={this.props.trefleInfoPlant.image_url} alt="selected plant" className="img-fluid" />
+          ) : ""}
         </div>
         <div className="trefle-names mt-3">
-        <h5 className="yellow-headline">Names</h5>
+          <h5 className="yellow-headline">Names</h5>
           <table className="table table-responsive d-table table-borderless">
             <tbody>
               <tr className="tr-color">
                 <td>Common name</td>
                 {!this.props.trefleInfoPlant.common_name ? (<td>currently unavailable</td>) :
-                (<td style={{ textTransform: "capitalize" }}>{this.props.trefleInfoPlant.common_name}</td>)}
+                  (<td style={{ textTransform: "capitalize" }}>{this.props.trefleInfoPlant.common_name}</td>)}
               </tr>
               <tr>
                 <td>Scientific name</td>
                 {!this.props.trefleInfoPlant.scientific_name ? (<td>currently unavailable</td>) :
-                (<td style={{ textTransform: "capitalize" }}>{this.props.trefleInfoPlant.scientific_name}</td>)}
+                  (<td style={{ textTransform: "capitalize" }}>{this.props.trefleInfoPlant.scientific_name}</td>)}
               </tr>
               <tr className="tr-color">
                 <td>Family common name</td>
                 {!this.props.trefleInfoPlant.family_common_name ? (<td>currently unavailable</td>) :
-                (<td style={{ textTransform: "capitalize" }}> {this.props.trefleInfoPlant.family_common_name}</td>)}
+                  (<td style={{ textTransform: "capitalize" }}> {this.props.trefleInfoPlant.family_common_name}</td>)}
               </tr>
             </tbody>
           </table>
@@ -77,10 +70,7 @@ export default class TrefleInfoPlantList extends Component {
         <div className="trefle-distribution mt-2">
           <h5 className="yellow-headline">Distribution Native*</h5>
           <ul className="distribution-countries">
-            {hasDistributionArray &&
-              randomCountryArray.map((country, index) => {
-                return <li key={index}>{country}</li>;
-              })}
+            {randomCountryArray.length > 0 ? randomCountryArray.map((country, index) => (<li key={index}>{country}</li>)) : (<li>currently unavailable</li>)}
           </ul>
           {/* {this.props.trefleInfoPlant.main_species.distribution.native
               .slice(0, 2)

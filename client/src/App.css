@@ -217,6 +217,10 @@ footer > p > img {
   border-color: #a3bcb6 !important;
 }
 
+.btn-primary:visited {
+  color: #ffffff !important;
+}
+
 .btn-danger {
   background-color: #f1b249 !important;
   border-color: #f1b249 !important;

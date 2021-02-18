@@ -57,41 +57,23 @@ class App extends React.Component {
           }}
           />
 
-          <Route exact path="/search">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <TrefleSearchResults />}
-          </Route>
+          <Route exact path="/search" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<TrefleSearchResults  {...routerProps} />)} />
 
-          <Route exact path="/search/detail/:slug">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <TrefleSearchDetails />}
-          </Route>
+          <Route exact path="/search/detail/:slug" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<TrefleSearchDetails {...routerProps} />)} />
 
-          <Route exact path="/add-plant/:slug">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <AddPlant />}
-          </Route>
+          <Route exact path="/add-plant/:slug" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<AddPlant {...routerProps} />)} />
 
-          <Route exact path="/my-plants">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <PlantCollection />}
-          </Route>
+          <Route exact path="/my-plants" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<PlantCollection {...routerProps} />)} />
 
-          <Route exact path="/my-plants/detail/:id/:slug">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <PlantDetails />}
-          </Route>
+          <Route exact path="/my-plants/detail/:id/:slug" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<PlantDetails {...routerProps} />)} />
 
-          <Route exact path="/reminders">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <ListOfReminders />}
-          </Route>
+          <Route exact path="/reminders" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<ListOfReminders {...routerProps} />)} />
 
-          <Route exact path="/add-reminder/:plantID">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <AddReminder />}
-          </Route>
+          <Route exact path="/add-reminder/:plantID" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<AddReminder {...routerProps} />)} />
 
-          <Route exact path="/reminders/:id">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <SingleReminder />}
-          </Route>
+          <Route exact path="/reminders/:id" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<SingleReminder {...routerProps} />)} />
 
-          <Route exact path="/user-profile">
-            {!this.state.loggedInUser ? <Redirect to="/" /> : <UserProfile updateTheUser={this.updateTheUser} />}
-          </Route>
+          <Route exact path="/user-profile" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<UserProfile {...routerProps} updateTheUser={this.updateTheUser} />)} />
 
         </Switch>
         <Footer />
