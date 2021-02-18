@@ -10,7 +10,7 @@ authRoutes.post("/signup", (req, res, next) => {
   const email = req.body.email;
 
   if (!username || !password || !email) {
-    res.status(400).json({ message: "Provide username, password and email" });
+    res.status(400).json({ message: "Provide username, password and email!" });
     return;
   }
 
@@ -48,7 +48,7 @@ authRoutes.post("/signup", (req, res, next) => {
     aNewUser.save((err) => {
       if (err) {
         res
-          .status(400)
+          .status(500)
           .json({ message: "Saving user to database went wrong." });
         return;
       }

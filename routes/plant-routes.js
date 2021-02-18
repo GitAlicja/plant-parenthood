@@ -106,12 +106,21 @@ router.put("/my-plants/:id", (req, res, next) => {
     return;
   }
 
+  const updatePlantObj = { name: req.body.name, notes: req.body.notes };
+
+  // we update the image only if it's added to edit form
+  // if no image was added, no image will be sent to the data bank
+  if (req.body.plantImg) {
+    updatePlantObj.plantImg = req.body.plantImg;
+  }
+
   // only the plant owner can update the plant (filter by the owner and id)
   // only values for the name, plantImg and notes properties can be updated
   // put method takes two arguments: what to look for (find an object with certain id), what to update (send)
   Plant.findOneAndUpdate(
     { _id: req.params.id, owner: req.user._id },
-    { name: req.body.name, plantImg: req.body.plantImg, notes: req.body.notes }
+    // { name: req.body.name, plantImg: req.body.plantImg, notes: req.body.notes }
+    updatePlantObj
   )
     .then((onePlant) => {
       // if there is no plant with certain id show 404 error

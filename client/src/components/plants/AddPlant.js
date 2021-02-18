@@ -42,7 +42,7 @@ class AddPlant extends React.Component {
         <h3>Add a new plant</h3>
         <form>
           <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="plant-name">
+            <label className="col-sm-2 col-form-label" htmlFor="plant-name">
               Plant name
             </label>
             <div className="col-7">
@@ -57,7 +57,7 @@ class AddPlant extends React.Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2 col-form-label" for="notes">
+            <label className="col-sm-2 col-form-label" htmlFor="notes">
               Your notes
             </label>
             <div className="col-sm-7">
@@ -72,7 +72,7 @@ class AddPlant extends React.Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col sm-2 col-form-label" for="plantImg">
+            <label className="col sm-2 col-form-label" htmlFor="plantImg">
               Upload an image
             </label>
 
@@ -85,7 +85,7 @@ class AddPlant extends React.Component {
               ></input>
             </div>
           </div>
-          <button onClick={this.submitHandler} className="btn btn-primary">
+          <button onClick={this.submitHandler} className="btn btn-primary btn-sm">
             Save Plant
           </button>
         </form>

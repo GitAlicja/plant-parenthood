@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
@@ -41,30 +41,40 @@ class App extends React.Component {
 
         <Switch>
           <Route exact path="/signup" render={() => {
-              if (this.state.loggedInUser) {
-                return <Home />;
-              } else {
-                return <Signup updateUser={this.updateTheUser} />
-              }
-            }}
+            if (this.state.loggedInUser) {
+              return <Home />;
+            } else {
+              return <Signup updateUser={this.updateTheUser} />
+            }
+          }}
           />
           <Route exact path="/" render={() => {
-              if (this.state.loggedInUser) {
-                return <Home />;
-              } else {
-                return <Login updateUser={this.updateTheUser} />;
-              }
-            }}
+            if (this.state.loggedInUser) {
+              return <Home />;
+            } else {
+              return <Login updateUser={this.updateTheUser} />;
+            }
+          }}
           />
-          <Route exact path="/search" component={TrefleSearchResults} />
-          <Route path="/search/detail/:slug" component={TrefleSearchDetails} />
-          <Route exact path="/add-plant/:slug" component={AddPlant} />
-          <Route exact path="/my-plants" component={PlantCollection} />
-          <Route exact path="/my-plants/detail/:id/:slug" component={PlantDetails} />
-          <Route exact path="/reminders" component={ListOfReminders} />
-          <Route exact path="/add-reminder/:plantID" component={AddReminder} />
-          <Route exact path="/reminders/:id" component={SingleReminder} />
-          <Route exact path="/user-profile" component={UserProfile} />
+
+          <Route exact path="/search" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<TrefleSearchResults  {...routerProps} />)} />
+
+          <Route exact path="/search/detail/:slug" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<TrefleSearchDetails {...routerProps} />)} />
+
+          <Route exact path="/add-plant/:slug" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<AddPlant {...routerProps} />)} />
+
+          <Route exact path="/my-plants" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<PlantCollection {...routerProps} />)} />
+
+          <Route exact path="/my-plants/detail/:id/:slug" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<PlantDetails {...routerProps} />)} />
+
+          <Route exact path="/reminders" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<ListOfReminders {...routerProps} />)} />
+
+          <Route exact path="/add-reminder/:plantID" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<AddReminder {...routerProps} />)} />
+
+          <Route exact path="/reminders/:id" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<SingleReminder {...routerProps} />)} />
+
+          <Route exact path="/user-profile" render={routerProps => !this.state.loggedInUser ? (<Redirect to="/" />) : (<UserProfile {...routerProps} updateTheUser={this.updateTheUser} />)} />
+
         </Switch>
         <Footer />
       </div>
