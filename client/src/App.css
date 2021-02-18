@@ -411,3 +411,12 @@ table {
   align-items: baseline;
   justify-content: center;
 }
+
+.trefle-plant-gallery {
+  width: 300px;
+}
+
+.api-plant-images {
+  width: 300px;
+  height: 300px;
+}
