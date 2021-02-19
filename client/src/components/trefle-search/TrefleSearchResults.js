@@ -84,7 +84,7 @@ class TrefleSearchResults extends React.Component {
           <input type='text' value={this.state.searchTerm} onChange={this.editSearchTerm} className='form-control mb-4' placeholder='Search plant...'></input>
         </div>
         {/* Bootstrap spinner */}
-        {this.state.loading && (<div className="spinner-border text-light" role="status">
+        {this.state.loading && (<div className="spinner-border text-light d-block" role="status">
           <span className="sr-only">Loading...</span>
         </div>)}
 

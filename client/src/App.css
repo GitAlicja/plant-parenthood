@@ -414,9 +414,14 @@ table {
 
 .trefle-plant-gallery {
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .api-plant-images {
   width: 300px;
   height: 300px;
+  object-fit: cover;
 }

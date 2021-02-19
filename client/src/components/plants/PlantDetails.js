@@ -105,7 +105,7 @@ export default class PlantDetails extends Component {
         <h2>Plant Details</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (
-          <div className="spinner-border text-light" role="status">
+          <div className="spinner-border text-light d-block" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         )}
@@ -157,7 +157,6 @@ export default class PlantDetails extends Component {
             plantReminders={this.state.userPlant.reminders}
           />
         )}
-
         {/* <div>
           {this.state.userPlant && this.state.displayReminders ? (
             <div>
@@ -177,7 +176,6 @@ export default class PlantDetails extends Component {
             </button>
           )}
         </div> */}
-        <br />
         <Link
           to="/my-plants"
           className="btn btn-outline-secondary btn-sm green-link mb-4"
