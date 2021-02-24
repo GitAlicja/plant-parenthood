@@ -25,7 +25,7 @@ export default class TrefleSearchDetails extends Component {
   render() {
     console.log("CHECK THE STATE!", this.state);
     if (this.state.loading) {
-      return <div className="spinner-border text-light" role="status">
+      return <div className="spinner-border text-light d-block" role="status">
         <span className="sr-only">Loading...</span>
       </div>
     }

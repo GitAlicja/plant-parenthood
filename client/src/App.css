@@ -8,7 +8,7 @@ body {
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #3c403d;
-  background-color: #daded4;
+  background-color: #dae4d4;
 }
 
 h1,
@@ -175,8 +175,17 @@ a:visited {
   width: 84%;
 }
 
+footer {
+  width: 84%;
+}
+
 footer > p > img {
-  height: 24px;
+  height: 22px;
+}
+
+footer > p {
+  font-size: small;
+  line-height: 1.3rem;
 }
 
 .transparent-icon {
@@ -360,7 +369,7 @@ table {
 }
 
 .tr-color {
-  background-color: #daded4;
+  background-color: #dae4d4;
 }
 
 .trefle-growth-notes > p {
@@ -414,9 +423,14 @@ table {
 
 .trefle-plant-gallery {
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .api-plant-images {
   width: 300px;
   height: 300px;
+  object-fit: cover;
 }

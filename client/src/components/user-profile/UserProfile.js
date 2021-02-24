@@ -36,7 +36,7 @@ class UserProfile extends React.Component {
       <div className="single-user-container mb-4">
         {/* Bootstrap spinner */}
         {this.state.loading && (
-          <div className="spinner-border text-light" role="status">
+          <div className="spinner-border text-light d-block" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         )}

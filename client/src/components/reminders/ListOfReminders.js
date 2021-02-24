@@ -27,7 +27,7 @@ class ListOfReminders extends React.Component {
         <h2>All Reminders</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (
-          <div className="spinner-border text-light" role="status">
+          <div className="spinner-border text-light d-block" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         )}
@@ -97,7 +97,7 @@ class ListOfReminders extends React.Component {
           to="/my-plants"
           className="btn btn-outline-secondary btn-sm green-link mb-4"
         >
-          Back to Your Collection
+          Back to Collection
         </Link>
       </div>
     );

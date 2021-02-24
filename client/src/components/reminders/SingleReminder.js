@@ -61,7 +61,7 @@ class SingleReminder extends React.Component {
         <h2>Remind me to...</h2>
         {/* Bootstrap spinner */}
         {this.state.loading && (
-          <div className="spinner-border text-light" role="status">
+          <div className="spinner-border text-light d-block" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         )}
