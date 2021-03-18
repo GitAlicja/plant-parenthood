@@ -1,4 +1,4 @@
-React & Node.js App: Plant Parenthood
+Full Stack Project: Plant Parenthood
 
 Plant care management app built using React & Node.js
 Data about plants retrieved from external API called Trefle (https://trefle.io/)
