@@ -1,8 +1,8 @@
 Full Stack Project: Plant Parenthood
 
-Plant care management app (SPA) built using React & Node.js
-Data about plants retrieved from an external API called Trefle: https://trefle.io/
-Working with Rest API & MongoDB
+Plant care management app (SPA) built using React and Node.js |
+Data about plants retrieved from an external API called Trefle: https://trefle.io/ |
+Working with Rest API & MongoDB |
 CRUD operations: 
 - create & read & update & delete plant
 - create & read & update & delete reminder
