@@ -19,7 +19,7 @@ router.get("/search", (req, res, next) => {
   //API Search example - https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&page=1&q=coconut
 
   const apiURL =
-    "https://trefle.io/api/v1/plants/search?token=" + process.env.TREFLE_ACCESS_TOKEN + `&page=${pageNum}` + `&q=${searchTerm}`;
+    process.env.TREFLE_API_URI + "/api/v1/plants/search?token=" + process.env.TREFLE_ACCESS_TOKEN + `&page=${pageNum}` + `&q=${searchTerm}`;
 
   axios.get(apiURL).then((resp) => {
     console.log(resp.data);
@@ -36,7 +36,7 @@ router.get("/search/detail/:slug", (req, res, next) => {
     .then((onePlant) => {
       axios
         .get(
-          "https://trefle.io/api/v1/plants/" +
+          process.env.TREFLE_API_URI + "/api/v1/plants/" +
           encodeURIComponent(req.params.slug) +
           "?token=" +
           process.env.TREFLE_ACCESS_TOKEN
