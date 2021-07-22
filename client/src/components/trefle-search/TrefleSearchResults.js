@@ -88,7 +88,12 @@ class TrefleSearchResults extends React.Component {
           <span className="sr-only">Loading...</span>
         </div>)}
 
-        {this.state.displayIcon && (<div><img src="/images/magnifying-glass.png" alt="small loupe" className="transparent-icon mt-3 mb-4" /></div>)}
+        {this.state.displayIcon && (
+          <div>
+            <div className="api-info-box shadow p-4 mb-4 mt-3 bg-body rounded">Trefle API–initially used for this project–is no longer available. Plants data are now retrieved from an external demo API and you can search only limited number of plants, i.e. <strong>lavender</strong>, <strong>peony</strong>, <strong>lilac</strong>. <br />You can find out more <a href="https://plant-parenthood-demo-api.herokuapp.com/" className="yellow-link">here</a></div>
+            <img src="/images/magnifying-glass.png" alt="small loupe" className="transparent-icon mt-3 mb-4" />
+          </div>
+          )}
 
         {this.state.results.map((plant, key) => {
 

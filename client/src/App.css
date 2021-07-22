@@ -434,3 +434,12 @@ table {
   height: 300px;
   object-fit: cover;
 }
+
+.api-info-box {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+}
+
+.yellow-link {
+color: #f1b249 !important;
+}
