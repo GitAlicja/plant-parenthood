@@ -27,6 +27,10 @@ class Login extends Component {
           this.setState({
             error: "Something went wrong. Try again!"
           });
+        } else if (error.response.status === 401) {
+          this.setState({
+            error: "You have entered an invalid username or password!"
+          });
         }
         console.error(error);
       });
@@ -38,6 +42,7 @@ class Login extends Component {
   render() {
     return (
       <div className="signup-photo mb-4">
+      {this.state.error && (<div className="alert alert-danger">{this.state.error}</div>)}
         <div className="form-container">
           <form onSubmit={this.handleFormSubmit}>
             <h2>Login</h2>
